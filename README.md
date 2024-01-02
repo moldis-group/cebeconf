@@ -14,7 +14,7 @@
 
 # Install the package with `pip`
 
-# How to quickly generate atomic coordinates using the universal force field (UFF) and Open Babel?
+# How to quickly generate atomic coordinates with UFF?
 
 Write down the [SMILES descriptor](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) of the molecule (example `c1ccccc1` for benzene) in a file. 
 
