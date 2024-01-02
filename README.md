@@ -9,10 +9,89 @@
 
  # Further details 
 - To facilitate rapid application of the ML models, training was done using geometries of the bigQM7ω molecules [determined using the universal force field (UFF)](https://ndownloader.figshare.com/files/30478326) provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
-- So, for new predictions, the ML models require geometries determined with UFF. 
-- Additional technical details are summarized in an upcoming article, see Ref-3 below. 
+- So, for new predictions, the ML models require geometries determined with UFF.
+- ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation (Ref-2).
+- Additional technical details are summarized in an upcoming article (Ref-3). 
 
-# Install the package with `pip`
+# How to use the models?
+
+ - Install dependencies `numpy`, `qml`, `pandas`
+
+- Install the package
+```
+    git@github.com:moldis-group/cebeconf.git
+    pip3 install -e /home/user/cebeconf
+```
+ - Create an XYZ file using UFF geometry (see below to learn about how to get this)
+
+ - Run the ML model in python3
+
+ ```
+from cebeconf import calc_be
+  
+calc_be('test.xyz')
+ ```
+
+ - Suppose `test.xyz' contains the last molecule in bigQM7ω dataset
+```
+18
+bigQM7w_UFF_012883
+C     1.03070  -0.07680   0.06770  
+C     2.53800  -0.21440  -0.12550  
+C     2.99750  -0.46340  -1.49170  
+N     3.09380   0.90540  -0.90860  
+C     4.47940   1.20090  -0.50870  
+C     5.01760   2.53370  -1.00430  
+C     4.47490   2.41010   0.41050  
+H     0.59860  -1.07330   0.29480  
+H     0.52630   0.33730  -0.83250  
+H     0.83500   0.60170   0.92380  
+H     3.17550  -0.57150   0.71420  
+H     2.25180  -0.44020  -2.31440  
+H     3.99580  -0.93590  -1.63370  
+H     5.09800   0.43550   0.01500  
+H     4.34280   2.85880  -1.82600  
+H     6.09080   2.33310  -1.20820  
+H     3.60210   3.09770   0.43410  
+H     5.35240   2.60380   1.06330 
+```
+
+- Running the code generates the following output
+```
+ Predicting 1s core binding energies calculated using the metaGGA-DFT method, SCAN, following the Delta-SCF approach
+
+ Here are some standard values calculated with this DFT model
+
+ C in CH4, methane      290.94 eV
+ C in CH3CH3, ethane    290.78 eV
+ C in CH2CH2, ethylene  290.86 eV
+ C in HCCH, acetylene   291.35 eV
+ N in NH3               405.79 eV
+ O in H2O               540.34 eV
+ F in HF                694.95 eV
+
+ Reading geometry from test.xyz
+
+/home/rr/repos/cebeconf/cebeconf/data
+ atom:    1 (C), 290.617 eV
+ atom:    2 (C), 291.224 eV
+ atom:    3 (C), 291.040 eV
+ atom:    4 (N), 404.806 eV
+ atom:    5 (C), 291.236 eV
+ atom:    6 (C), 290.416 eV
+ atom:    7 (C), 290.425 eV
+ atom:    8 (H)
+ atom:    9 (H)
+ atom:   10 (H)
+ atom:   11 (H)
+ atom:   12 (H)
+ atom:   13 (H)
+ atom:   14 (H)
+ atom:   15 (H)
+ atom:   16 (H)
+ atom:   17 (H)
+ atom:   18 (H)
+```
 
 # How to quickly generate atomic coordinates with UFF?
 
@@ -29,9 +108,6 @@ Relax tightly using UFF.
     obminimize -sd -ff UFF -c 1e-8 benzene.xyz > benzene_UFF.xyz
 
 :warning: We have used Open Babel 2.4.1 in our workflow.
-
-# Descriptor degeneration
-(https://www.qmlcode.org/) (Ref-2).
 
 # References
 [Ref-1] [_The Resolution-vs.-Accuracy Dilemma in Machine Learning Modeling of Electronic Excitation Spectra_](https://doi.org/10.1039/D1DD00031D)                  
