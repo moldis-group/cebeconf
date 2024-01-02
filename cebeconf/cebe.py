@@ -79,7 +79,6 @@ def calc_be(XYZfile):
     desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
 
     # Load data
-    print(data_folder)
     X_train_C=np.load(os.path.join(data_folder, 'C_representation.npy'))
     X_train_N=np.load(os.path.join(data_folder, 'N_representation.npy'))
     X_train_O=np.load(os.path.join(data_folder, 'O_representation.npy'))
