@@ -72,7 +72,6 @@ H     5.35240   2.60380   1.06330
 
  Reading geometry from test.xyz
 
-/home/rr/repos/cebeconf/cebeconf/data
  atom:    1 (C), 290.617 eV
  atom:    2 (C), 291.224 eV
  atom:    3 (C), 291.040 eV
