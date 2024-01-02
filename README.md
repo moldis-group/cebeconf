@@ -24,7 +24,7 @@
 ```
  - Create an XYZ file using UFF geometry (see below to learn about how to get this)
 
- - Run the ML model in python3
+ - Run the ML model in `python3`
 
  ```
 from cebeconf import calc_be
