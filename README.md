@@ -19,7 +19,7 @@
 
 - Install the package
 ```
-    git@github.com:moldis-group/cebeconf.git
+    git clone git@github.com:moldis-group/cebeconf.git
     pip3 install -e /home/user/cebeconf
 ```
  - Create an XYZ file using UFF geometry (see below to learn about how to get this)
