@@ -1,6 +1,6 @@
-# `beconf`
+# `cebeconf` :construction:
 
-`beconf` is a set of machine-learning models of 1s-core electron `b`inding `e`nergies of `CONF` atoms in small organic molecules. 
+`cebeconf` is a set of machine-learning models of 1s-`c`ore `e`lectron `b`inding `e`nergies of `CONF` atoms in small organic molecules. 
 
 # Details of target-level 1s core-electron binding energies
 - Models were trained on 12880 small organic molecules from the [bigQM7ω dataset](https://moldis-group.github.io/bigQM7w/) (Ref-1).
