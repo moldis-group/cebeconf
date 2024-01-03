@@ -1,5 +1,14 @@
 # `cebeconf` :construction:
 
+```
+             _                                __ 
+            | |                              / _|
+   ___  ___ | |__    ___   ___  ___   _ __  | |_ 
+  / __|/ _ \| '_ \  / _ \ / __|/ _ \ | '_ \ |  _|
+ | (__|  __/| |_) ||  __/| (__| (_) || | | || |  
+  \___|\___||_.__/  \___| \___|\___/ |_| |_||_|
+```
+
 `cebeconf` package is a set of machine-learning models for predicting 1s-`c`ore `e`lectron `b`inding `e`nergies of `CONF` atoms in organic molecules. 
 
 # Details of target-level 1s core-electron binding energies
