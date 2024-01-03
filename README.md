@@ -67,17 +67,7 @@ H     5.35240   2.60380   1.06330
 
 - Running the code generates the following output
 ```
- Predicting 1s core binding energies calculated using the metaGGA-DFT method, SCAN, following the Delta-SCF approach
-
- Here are some standard values calculated with this DFT model
-
- C in CH4, methane      290.94 eV
- C in CH3CH3, ethane    290.78 eV
- C in CH2CH2, ethylene  290.86 eV
- C in HCCH, acetylene   291.35 eV
- N in NH3               405.79 eV
- O in H2O               540.34 eV
- F in HF                694.95 eV
+...
 
  Reading geometry from test.xyz
 
@@ -89,16 +79,8 @@ H     5.35240   2.60380   1.06330
  atom:    6 (C), 290.416 eV
  atom:    7 (C), 290.425 eV
  atom:    8 (H)
- atom:    9 (H)
- atom:   10 (H)
- atom:   11 (H)
- atom:   12 (H)
- atom:   13 (H)
- atom:   14 (H)
- atom:   15 (H)
- atom:   16 (H)
- atom:   17 (H)
- atom:   18 (H)
+
+...
 ```
 
 # How to calculate UFF-level geometry? 🤔
