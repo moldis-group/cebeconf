@@ -5,7 +5,7 @@
 # Details of target-level 1s core-electron binding energies
 - Models were trained on 12880 small organic molecules from the [bigQM7ω dataset](https://moldis-group.github.io/bigQM7w/) (Ref-1).
 - Target property (1s core-electron binding energies) was calculated using the meta-GGA-DFT method strongly constrained and appropriately normed (`SCAN`) with a large, `Tight-full` numeric atom-centered orbital (NAO) basis set implemented in [FHI-aims](https://fhi-aims.org/).
-- These calculations were performed using ωB97XD/def2TZVP geometries presented initially in the [bigQM7ω dataset](https://doi.org/10.1039/D1DD00031D).
+- These calculations were performed using ωB97XD/def2TZVP geometries presented in the bigQM7ω dataset.
 
  # Details of training the ML models 🤖
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
