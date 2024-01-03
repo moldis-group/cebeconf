@@ -6,6 +6,15 @@ from qml.representations import generate_atomic_coulomb_matrix
 from setuptools import find_packages, setup
 from pkg_resources import resource_filename
 
+from datetime import datetime
+
+start_time = datetime.now()
+formatted_datetime = start_time.strftime("%Y-%m-%d %H:%M:%S")
+
+
+
+
+
 data_folder = resource_filename('cebeconf', 'data')
 
 logo='''
@@ -34,23 +43,35 @@ header='''
  F in HF                694.95 eV
 '''
 
+# Gaussian and Laplacian kernels
+def kernel(option,sigma,dT, dQ):
+    if option == 'L':
+        dij=np.sum(np.abs(dT-dQ))
+        val = np.exp(-dij / sigma)
+    elif option == 'G':
+        dij=np.sqrt(np.sum(np.abs(dT-dQ)**2))
+        val = np.exp( -dij**2   / (2*sigma**2) )
+    return val
+
+# Atomic numbers
+def atno(ele):
+    if ele == 'H':
+        Z = 1
+    elif ele == 'C':
+        Z = 6
+    elif ele == 'N':
+        Z = 7
+    elif ele == 'O':
+        Z = 8
+    elif ele == 'F':
+        Z = 9
+    return Z
+
 def calc_be(XYZfile):
 
-    # Atomic numbers
-    def atno(ele):
-        if ele == 'H':
-            Z = 1
-        elif ele == 'C':
-            Z = 6
-        elif ele == 'N':
-            Z = 7
-        elif ele == 'O':
-            Z = 8
-        elif ele == 'F':
-            Z = 9
-        return Z
-
     # Main code
+    print('')
+    print(' Current Time:', formatted_datetime)
     print(logo)
     print(header)
 
@@ -110,16 +131,6 @@ def calc_be(XYZfile):
     sigma_N=9203.50735350
     sigma_O=12841.51702904
     sigma_F=87500.54782720
-
-    # Gaussian and Laplacian kernels
-    def kernel(option,sigma,dT, dQ):
-        if option == 'L':
-            dij=np.sum(np.abs(dT-dQ))
-            val = np.exp(-dij / sigma)
-        elif option == 'G':
-            dij=np.sqrt(np.sum(np.abs(dT-dQ)**2))
-            val = np.exp( -dij**2   / (2*sigma**2) )
-        return val
 
     # Predict with KRR
     for i_at in range(N_at):
@@ -181,3 +192,12 @@ def calc_be(XYZfile):
         else:
 
             print(f" atom: {i_at+1:4d} ({at_types[i_at]})")
+
+    # Calculate elapsed time
+    end_time = datetime.now()
+    elapsed_time = end_time - start_time
+    formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
+    print('')
+    print(" Elapsed Time (seconds):", formatted_elapsed_time)
+    return
+
