@@ -35,7 +35,7 @@
 ```
  - Create an XYZ file at the UFF level (see below to learn about how to do this)
 
- - Run the ML model in `python3` (example in cebeconf/test folder)
+ - Run the ML model in `python3` (example in `cebeconf/test` folder)
 
  ```
 from cebeconf import calc_be
