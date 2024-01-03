@@ -70,18 +70,10 @@ H     5.35240   2.60380   1.06330
 - Running the code generates the following output
 ```
 ...
-
- Reading geometry from test.xyz
-
- atom:    1 (C), 290.617 eV
- atom:    2 (C), 291.224 eV
- atom:    3 (C), 291.040 eV
- atom:    4 (N), 404.806 eV
- atom:    5 (C), 291.236 eV
- atom:    6 (C), 290.416 eV
- atom:    7 (C), 290.425 eV
- atom:    8 (H)
-
+ C      1.14063300     -0.52408400      0.00000000     293.50 eV, 0.25 seconds
+ F      2.44028200     -0.79122300     -0.00000000     694.52 eV, 0.04 seconds
+ C      0.74670300      0.88491100      0.00000000     294.90 eV, 0.26 seconds
+ O      1.49706300      1.82593500      0.00000000     537.82 eV, 0.09 seconds
 ...
 ```
 
