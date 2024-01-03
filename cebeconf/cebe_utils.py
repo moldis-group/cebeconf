@@ -1,10 +1,22 @@
-# Find suitable cut-off for large systems
 def rcut(mol_R, i_at):
+   '''
+    Calculates cut-off radius adaptively for chopping large molecules with > 23 atoms
+
+            Input:
+                    mol_R(np.array, float): Atomic coordinates (N_at,3)
+                    i_at (int): Index of the query atom
+
+            Returns:
+                    cutoff (float): cut-off radius
+    '''
     import numpy as np
+
     Ri=mol_R[i_at]
     cutoff=10.0
+
     N_at=len(mol_R)
     Nneigh=N_at
+
     while Nneigh > 23:
         Nneigh=0
         for j_at in range(N_at):
@@ -17,6 +29,16 @@ def rcut(mol_R, i_at):
     return cutoff, Nneigh
 
 def headers():
+    '''
+    Prepares header content for the output
+
+            Input:
+
+            Returns:
+                    logo (string): cebeconf logo
+                    header (string): header content
+    '''
+
     logo='''
              _                                __
             | |                              / _|
