@@ -1,6 +1,5 @@
 import numpy as np
 
-# Gaussian and Laplacian kernels
 def kernel(option,sigma,dT, dQ):
     '''
     Calculates kernel matrix element
