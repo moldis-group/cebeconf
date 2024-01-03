@@ -11,9 +11,8 @@ from datetime import datetime
 start_time = datetime.now()
 formatted_datetime = start_time.strftime("%Y-%m-%d %H:%M:%S")
 
-
-
-
+print('')
+print(' Current Time:', formatted_datetime)
 
 data_folder = resource_filename('cebeconf', 'data')
 
@@ -67,11 +66,9 @@ def atno(ele):
         Z = 9
     return Z
 
+# Main
 def calc_be(XYZfile):
 
-    # Main code
-    print('')
-    print(' Current Time:', formatted_datetime)
     print(logo)
     print(header)
 
@@ -106,6 +103,35 @@ def calc_be(XYZfile):
 
             iline=iline+1
 
+    # Load data
+    time1 = datetime.now()
+    X_train_C=np.load(os.path.join(data_folder, 'C_representation.npy'))
+    df = pd.read_csv(os.path.join(data_folder, 'C_model_direct.csv'), header=None)
+    model_C=np.array(df.iloc[:,0].values)
+
+    X_train_N=np.load(os.path.join(data_folder, 'N_representation.npy'))
+    df = pd.read_csv(os.path.join(data_folder, 'N_model_direct.csv'), header=None)
+    model_N=np.array(df.iloc[:,0].values)
+
+    X_train_O=np.load(os.path.join(data_folder, 'O_representation.npy'))
+    df = pd.read_csv(os.path.join(data_folder, 'O_model_direct.csv'), header=None)
+    model_O=np.array(df.iloc[:,0].values)
+
+    X_train_F=np.load(os.path.join(data_folder, 'F_representation.npy'))
+    df = pd.read_csv(os.path.join(data_folder, 'F_model_direct.csv'), header=None)
+    model_F=np.array(df.iloc[:,0].values)
+
+    sigma_C=5712.74014896
+    sigma_N=9203.50735350
+    sigma_O=12841.51702904
+    sigma_F=87500.54782720
+
+    time2 = datetime.now()
+    elapsed_time = time2-time1
+    formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
+    print(f' Loading ML models took {formatted_elapsed_time} seconds')
+
+    print('')
     print(f' Reading geometry from {XYZfile} containing {N_at:4d} atoms')
     print('')
     print(' Input XYZ along with ML-predicted 1s core binding energies:')
@@ -119,25 +145,6 @@ def calc_be(XYZfile):
     # Calculate descriptor for query molecule
     desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
 
-    # Load data
-    X_train_C=np.load(os.path.join(data_folder, 'C_representation.npy'))
-    X_train_N=np.load(os.path.join(data_folder, 'N_representation.npy'))
-    X_train_O=np.load(os.path.join(data_folder, 'O_representation.npy'))
-    X_train_F=np.load(os.path.join(data_folder, 'F_representation.npy'))
-
-    df = pd.read_csv(os.path.join(data_folder, 'C_model_direct.csv'), header=None)
-    model_C=np.array(df.iloc[:,0].values)
-    df = pd.read_csv(os.path.join(data_folder, 'N_model_direct.csv'), header=None)
-    model_N=np.array(df.iloc[:,0].values)
-    df = pd.read_csv(os.path.join(data_folder, 'O_model_direct.csv'), header=None)
-    model_O=np.array(df.iloc[:,0].values)
-    df = pd.read_csv(os.path.join(data_folder, 'F_model_direct.csv'), header=None)
-    model_F=np.array(df.iloc[:,0].values)
-
-    sigma_C=5712.74014896
-    sigma_N=9203.50735350
-    sigma_O=12841.51702904
-    sigma_F=87500.54782720
 
     # Predict with KRR
     for i_at in range(N_at):
@@ -157,6 +164,8 @@ def calc_be(XYZfile):
                 sigma=sigma_O
             elif mol_Z[i_at] == 9:
                 sigma=sigma_F
+
+            time1 = datetime.now()
 
             if mol_Z[i_at] == 6:
 
@@ -194,8 +203,11 @@ def calc_be(XYZfile):
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
 
+            time2 = datetime.now()
+            elapsed_time = time2-time1
+            formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
            #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
-            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
+            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds")
 
         else:
 
@@ -207,6 +219,6 @@ def calc_be(XYZfile):
     elapsed_time = end_time - start_time
     formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
     print('')
-    print(" Elapsed Time (seconds):", formatted_elapsed_time)
+    print(" Total elapsed Time (seconds):", formatted_elapsed_time)
     return
 
