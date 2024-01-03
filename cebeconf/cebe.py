@@ -1,5 +1,4 @@
 import os
-import argparse
 import numpy as np
 import pandas as pd
 import qml
@@ -123,7 +122,7 @@ def calc_be(XYZfile):
     # Predict with KRR
     for i_at in range(N_at):
 
-        avail=[6, 7,8,9]
+        avail=[6,7,8,9]
 
         if mol_Z[i_at] in avail:
 
@@ -140,27 +139,34 @@ def calc_be(XYZfile):
                 sigma=sigma_F
 
             if mol_Z[i_at] == 6:
+
                 Kpred=[]
                 for i in range(len(X_train_C)):
                     dT=X_train_C[i]
                     Kiq=kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_C)
+
             elif mol_Z[i_at] == 7:
+
                 Kpred=[]
                 for i in range(len(X_train_N)):
                     dT=X_train_N[i]
                     Kiq=kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_N)
+
             elif mol_Z[i_at] == 8:
+
                 Kpred=[]
                 for i in range(len(X_train_O)):
                     dT=X_train_O[i]
                     Kiq=kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_O)
+
             elif mol_Z[i_at] == 9:
+
                 Kpred=[]
                 for i in range(len(X_train_F)):
                     dT=X_train_F[i]
