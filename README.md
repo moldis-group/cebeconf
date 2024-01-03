@@ -27,7 +27,8 @@
  - Install dependencies `numpy`, `qml`, `pandas`
 
 - Download and install the package
-``` mkdir Test_cebeconf
+```
+    mkdir Test_cebeconf
     cd Test_cebeconf
     git clone git@github.com:moldis-group/cebeconf.git
     pip3 install -e cebeconf
