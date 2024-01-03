@@ -9,6 +9,15 @@ from pkg_resources import resource_filename
 
 data_folder = resource_filename('cebeconf', 'data')
 
+logo='''
+             _                                __
+            | |                              / _|
+   ___  ___ | |__    ___   ___  ___   _ __  | |_
+  / __|/ _ \| '_ \  / _ \ / __|/ _ \ | '_ \ |  _|
+ | (__|  __/| |_) ||  __/| (__| (_) || | | || |
+  \___|\___||_.__/  \___| \___|\___/ |_| |_||_|
+'''
+
 
 def calc_be(XYZfile):
 
@@ -28,7 +37,10 @@ def calc_be(XYZfile):
 
     # Main code
     print('')
-    print(' Predicting 1s core binding energies calculated using the metaGGA-DFT method, SCAN, following the Delta-SCF approach')
+    print(logo)
+    print('')
+    print(' This is an ML model for predicting 1s core binding energies calculated using the')
+    print(' Delta-SCF approach with the metaGGA-DFT method, SCAN and a very large basis set.')
     print('')
     print(' Here are some standard values calculated with this DFT model')
     print('')
