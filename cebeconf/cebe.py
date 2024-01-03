@@ -66,6 +66,23 @@ def atno(ele):
         Z = 9
     return Z
 
+# Find suitable cut-off for large systems
+def Rcut(mol_R, i_at):
+    Ri=mol_R[i_at]
+    Rcut=10.0
+    N_at=len(mol_R)
+    Nneigh=N_at
+    while Nneigh > 23:
+        Nneigh=0
+        for j_at in range(N_at):
+            Rj=mol_R[j_at]
+            dRij=Ri-Rj
+            Rij=np.sqrt(np.sum(dRij**2))
+            if Rij < Rcut:
+                Nneigh=Nneigh+1
+        Rcut=Rcut-0.01
+    return Rcut, Nneigh
+
 # Main
 def calc_be(XYZfile):
 
@@ -136,6 +153,10 @@ def calc_be(XYZfile):
     print('')
     print(' Input XYZ along with ML-predicted 1s core binding energies:')
     print('')
+    if N_at > 23:
+        print(f' It\'s a big molecule!')
+        print('')
+
     print(f'{N_at:4d}')
     print(f' {Mol_title}')
 
@@ -153,12 +174,14 @@ def calc_be(XYZfile):
             Zi=mol_Z[i_at]
             Ri=mol_R[i_at]
             k_at = 0
+            Rcutval, NN=Rcut(mol_R, i_at)
+           #print(i_at, Rcutval, NN)
             for j_at in range(N_at):
                 Zj=mol_Z[j_at]
                 Rj=mol_R[j_at]
                 dRij=Ri-Rj
                 Rij=np.sqrt(np.sum(dRij**2))
-                if Rij < 4.0:
+                if Rij < Rcutval:
                     mol_Z_atm.append(Zj)
                     mol_R_atm.append(Rj)
                     if j_at == i_at:
