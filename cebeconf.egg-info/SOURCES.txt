@@ -2,6 +2,9 @@ README.md
 setup.py
 cebeconf/__init__.py
 cebeconf/cebe.py
+cebeconf/cebe_kernels.py
+cebeconf/cebe_params.py
+cebeconf/cebe_utils.py
 cebeconf.egg-info/PKG-INFO
 cebeconf.egg-info/SOURCES.txt
 cebeconf.egg-info/dependency_links.txt

@@ -5,8 +5,8 @@ import qml
 from qml.representations import generate_atomic_coulomb_matrix
 from setuptools import find_packages, setup
 from pkg_resources import resource_filename
-
 from datetime import datetime
+import cebeconf
 
 start_time = datetime.now()
 formatted_datetime = start_time.strftime("%Y-%m-%d %H:%M:%S")
@@ -16,76 +16,10 @@ print(' Current Time:', formatted_datetime)
 
 data_folder = resource_filename('cebeconf', 'data')
 
-logo='''
-             _                                __
-            | |                              / _|
-   ___  ___ | |__    ___   ___  ___   _ __  | |_
-  / __|/ _ \| '_ \  / _ \ / __|/ _ \ | '_ \ |  _|
- | (__|  __/| |_) ||  __/| (__| (_) || | | || |
-  \___|\___||_.__/  \___| \___|\___/ |_| |_||_|
-'''
-
-header='''
- This is an ML model for predicting 1s core binding 
- energies of CONF atoms. The model is trained on data
- calculated using Delta-SCF approach with the mGGA-DFT 
- method, SCAN, and a very large basis set.
-
- Some reference values determined with this DFT method:
-
- C in CH4, methane      290.94 eV
- C in CH3CH3, ethane    290.78 eV
- C in CH2CH2, ethylene  290.86 eV
- C in HCCH, acetylene   291.35 eV
- N in NH3               405.79 eV
- O in H2O               540.34 eV
- F in HF                694.95 eV
-'''
-
-# Gaussian and Laplacian kernels
-def kernel(option,sigma,dT, dQ):
-    if option == 'L':
-        dij=np.sum(np.abs(dT-dQ))
-        val = np.exp(-dij / sigma)
-    elif option == 'G':
-        dij=np.sqrt(np.sum(np.abs(dT-dQ)**2))
-        val = np.exp( -dij**2   / (2*sigma**2) )
-    return val
-
-# Atomic numbers
-def atno(ele):
-    if ele == 'H':
-        Z = 1
-    elif ele == 'C':
-        Z = 6
-    elif ele == 'N':
-        Z = 7
-    elif ele == 'O':
-        Z = 8
-    elif ele == 'F':
-        Z = 9
-    return Z
-
-# Find suitable cut-off for large systems
-def Rcut(mol_R, i_at):
-    Ri=mol_R[i_at]
-    Rcut=10.0
-    N_at=len(mol_R)
-    Nneigh=N_at
-    while Nneigh > 23:
-        Nneigh=0
-        for j_at in range(N_at):
-            Rj=mol_R[j_at]
-            dRij=Ri-Rj
-            Rij=np.sqrt(np.sum(dRij**2))
-            if Rij < Rcut:
-                Nneigh=Nneigh+1
-        Rcut=Rcut-0.01
-    return Rcut, Nneigh
-
 # Main
 def calc_be(XYZfile):
 
+    logo, header = cebeconf.headers()
     print(logo)
     print(header)
 
@@ -115,7 +49,7 @@ def calc_be(XYZfile):
 
                 ele=line[0]
                 at_types.append(ele)
-                at_Z=atno(ele)
+                at_Z=cebeconf.atno(ele)
                 mol_Z.append(at_Z)
 
             iline=iline+1
@@ -151,12 +85,13 @@ def calc_be(XYZfile):
     print('')
     print(f' Reading geometry from {XYZfile} containing {N_at:4d} atoms')
     print('')
-    print(' Input XYZ along with ML-predicted 1s core binding energies:')
-    print('')
+
     if N_at > 23:
         print(f' It\'s a big molecule!')
         print('')
 
+    print(' Input XYZ along with ML-predicted 1s core binding energies:')
+    print('')
     print(f'{N_at:4d}')
     print(f' {Mol_title}')
 
@@ -174,7 +109,7 @@ def calc_be(XYZfile):
             Zi=mol_Z[i_at]
             Ri=mol_R[i_at]
             k_at = 0
-            Rcutval, NN=Rcut(mol_R, i_at)
+            Rcutval, NN=cebeconf.rcut(mol_R, i_at)
            #print(i_at, Rcutval, NN)
             for j_at in range(N_at):
                 Zj=mol_Z[j_at]
@@ -218,7 +153,7 @@ def calc_be(XYZfile):
                 Kpred=[]
                 for i in range(len(X_train_C)):
                     dT=X_train_C[i]
-                    Kiq=kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_C)
 
@@ -227,7 +162,7 @@ def calc_be(XYZfile):
                 Kpred=[]
                 for i in range(len(X_train_N)):
                     dT=X_train_N[i]
-                    Kiq=kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_N)
 
@@ -236,7 +171,7 @@ def calc_be(XYZfile):
                 Kpred=[]
                 for i in range(len(X_train_O)):
                     dT=X_train_O[i]
-                    Kiq=kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_O)
 
@@ -245,7 +180,7 @@ def calc_be(XYZfile):
                 Kpred=[]
                 for i in range(len(X_train_F)):
                     dT=X_train_F[i]
-                    Kiq=kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
 
@@ -267,4 +202,3 @@ def calc_be(XYZfile):
     print('')
     print(" Total elapsed Time (seconds):", formatted_elapsed_time)
     return
-
