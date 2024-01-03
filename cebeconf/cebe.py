@@ -156,7 +156,7 @@ def calc_be(XYZfile):
             elif mol_Z[i_at] == 8:
                 Kpred=[]
                 for i in range(len(X_train_O)):
-                    dT=X_train_F[i]
+                    dT=X_train_O[i]
                     Kiq=kernel('L',sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_O)
