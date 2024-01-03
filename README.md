@@ -92,7 +92,7 @@ H     5.35240   2.60380   1.06330
  atom:   18 (H)
 ```
 
-# Atomic Coordinates with UFF 🤔
+# How to calculate UFF-level geometry? 🤔
 
 Write down the [SMILES descriptor](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) of the molecule (example `c1ccccc1` for benzene) in a file. 
 
