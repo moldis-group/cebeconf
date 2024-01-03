@@ -1,28 +1,28 @@
 # `cebeconf` :construction:
 
-`cebeconf` is a set of machine-learning models of 1s-`c`ore `e`lectron `b`inding `e`nergies of `CONF` atoms in small organic molecules. 
+`cebeconf` package is a set of machine-learning models for predicting 1s-`c`ore `e`lectron `b`inding `e`nergies of `CONF` atoms in organic molecules. 
 
 # Details of target-level 1s core-electron binding energies
 - Models were trained on 12880 small organic molecules from the [bigQM7ω dataset](https://moldis-group.github.io/bigQM7w/) (Ref-1).
-- Target property, which is the 1s core-electron binding energies, were calculated using the meta-GGA-DFT method strongly constrained and appropriately normed (`SCAN`) with a `Tight-full` numeric atom-centered orbital (NAO) basis set implemented in the quantum mechanics software package, [FHI-aims](https://fhi-aims.org/).
-- It is important to note that these calculations were performed using ωB97XD/def2TZVP geometries presented initially in the [bigQM7ω dataset](https://doi.org/10.1039/D1DD00031D), See [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/).
+- Target property (1s core-electron binding energies) was calculated using the meta-GGA-DFT method strongly constrained and appropriately normed (`SCAN`) with a large, `Tight-full` numeric atom-centered orbital (NAO) basis set implemented in [FHI-aims](https://fhi-aims.org/).
+- These calculations were performed using ωB97XD/def2TZVP geometries presented initially in the [bigQM7ω dataset](https://doi.org/10.1039/D1DD00031D), See [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/).
 
- # Further details 
-- To facilitate rapid application of the ML models, training was done using geometries of the bigQM7ω molecules [determined using the universal force field (UFF)](https://ndownloader.figshare.com/files/30478326) provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
-- So, for new predictions, the ML models require geometries determined with UFF.
+ # Details of training the ML models 🤖
+- To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules [determined with the universal force field (UFF)](https://ndownloader.figshare.com/files/30478326). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
+- So, for new predictions, the ML models require geometries quickly determined with UFF.
 - ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation (Ref-2).
 - Additional technical details are summarized in an upcoming article (Ref-3). 
 
-# How to use the models?
+# Run the models ✨
 
  - Install dependencies `numpy`, `qml`, `pandas`
 
-- Install the package
+- Download and install the package
 ```
     git clone git@github.com:moldis-group/cebeconf.git
     pip3 install -e /path/cebeconf
 ```
- - Create an XYZ file using UFF geometry (see below to learn about how to get this)
+ - Create an XYZ file at the UFF level (see below to learn about how to do this)
 
  - Run the ML model in `python3`
 
@@ -32,7 +32,7 @@ from cebeconf import calc_be
 calc_be('test.xyz')
  ```
 
- - Suppose `test.xyz' contains the last molecule in bigQM7ω dataset
+ - Suppose `test.xyz' contains the following geometry (which is the last molecule in bigQM7ω dataset)
 ```
 18
 bigQM7w_UFF_012883
@@ -92,7 +92,7 @@ H     5.35240   2.60380   1.06330
  atom:   18 (H)
 ```
 
-# How to quickly generate atomic coordinates with UFF?
+# Atomic Coordinates with UFF 🤔
 
 Write down the [SMILES descriptor](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) of the molecule (example `c1ccccc1` for benzene) in a file. 
 
