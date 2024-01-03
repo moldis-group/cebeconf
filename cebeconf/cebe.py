@@ -17,6 +17,22 @@ logo='''
   \___|\___||_.__/  \___| \___|\___/ |_| |_||_|
 '''
 
+header='''
+ This is an ML model for predicting 1s core binding 
+ energies of CONF atoms. The model is trained on data
+ calculated using Delta-SCF approach with the mGGA-DFT 
+ method, SCAN, and a very large basis set.
+
+ Some reference values determined with this DFT method:
+
+ C in CH4, methane      290.94 eV
+ C in CH3CH3, ethane    290.78 eV
+ C in CH2CH2, ethylene  290.86 eV
+ C in HCCH, acetylene   291.35 eV
+ N in NH3               405.79 eV
+ O in H2O               540.34 eV
+ F in HF                694.95 eV
+'''
 
 def calc_be(XYZfile):
 
@@ -38,18 +54,7 @@ def calc_be(XYZfile):
     print('')
     print(logo)
     print('')
-    print(' This is an ML model for predicting 1s core binding energies calculated using the')
-    print(' Delta-SCF approach with the metaGGA-DFT method, SCAN and a very large basis set.')
-    print('')
-    print(' Here are some standard values calculated with this DFT model')
-    print('')
-    print(' C in CH4, methane      290.94 eV')
-    print(' C in CH3CH3, ethane    290.78 eV')
-    print(' C in CH2CH2, ethylene  290.86 eV')
-    print(' C in HCCH, acetylene   291.35 eV')
-    print(' N in NH3               405.79 eV')
-    print(' O in H2O               540.34 eV')
-    print(' F in HF                694.95 eV')
+    print(header)
     print('')
 
     # Read XYZfile
@@ -174,7 +179,7 @@ def calc_be(XYZfile):
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
 
-            print(f" atom: {i_at+1:4d} ({at_types[i_at]}), {Epred:6.3f} eV")
+            print(f" atom: {i_at+1:4d} ({at_types[i_at]}), {Epred:6.2f} eV")
 
         else:
 
