@@ -13,7 +13,7 @@
 - ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation (Ref-2).
 - Additional technical details are summarized in an upcoming article (Ref-3). 
 
-# Run the models ✨
+# Run `cebeconf` ✨
 
  - Install dependencies `numpy`, `qml`, `pandas`
 
