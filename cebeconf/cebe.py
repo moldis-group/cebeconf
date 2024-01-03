@@ -145,7 +145,6 @@ def calc_be(XYZfile):
     # Calculate descriptor for query molecule
     desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
 
-
     # Predict with KRR
     for i_at in range(N_at):
 
