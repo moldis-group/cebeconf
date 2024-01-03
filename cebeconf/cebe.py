@@ -51,11 +51,8 @@ def calc_be(XYZfile):
         return Z
 
     # Main code
-    print('')
     print(logo)
-    print('')
     print(header)
-    print('')
 
     # Read XYZfile
     mol_R=[]
