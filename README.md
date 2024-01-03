@@ -35,7 +35,7 @@
 ```
  - Create an XYZ file at the UFF level (see below to learn about how to do this)
 
- - Run the ML model in `python3` (example in cebeconf/test folder)
+ - Run the ML model in `python3` (example in `cebeconf/test` folder)
 
  ```
 from cebeconf import calc_be
@@ -70,18 +70,10 @@ H     5.35240   2.60380   1.06330
 - Running the code generates the following output
 ```
 ...
-
- Reading geometry from test.xyz
-
- atom:    1 (C), 290.617 eV
- atom:    2 (C), 291.224 eV
- atom:    3 (C), 291.040 eV
- atom:    4 (N), 404.806 eV
- atom:    5 (C), 291.236 eV
- atom:    6 (C), 290.416 eV
- atom:    7 (C), 290.425 eV
- atom:    8 (H)
-
+ C      1.03070000     -0.07680000      0.06770000     290.62 eV, 0.24 seconds
+ C      2.53800000     -0.21440000     -0.12550000     291.22 eV, 0.26 seconds
+ C      2.99750000     -0.46340000     -1.49170000     291.04 eV, 0.26 seconds
+ N      3.09380000      0.90540000     -0.90860000     404.81 eV, 0.11 seconds
 ...
 ```
 
