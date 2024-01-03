@@ -84,15 +84,15 @@ def calc_be(XYZfile):
 
     with open(XYZfile,'r') as f:
 
-        print(' Reading geometry from', XYZfile)
-        print('')
-
         for line in f:
 
             line=line.split()
 
             if iline == 0:
                 N_at=int(line[0])
+
+            if iline == 1:
+                Mol_title=line[0]
 
             if iline > 1:
                 at_R=[float(line[1]),float(line[2]),float(line[3])]
@@ -105,6 +105,13 @@ def calc_be(XYZfile):
                 mol_Z.append(at_Z)
 
             iline=iline+1
+
+    print(f' Reading geometry from {XYZfile} containing {N_at:4d} atoms')
+    print('')
+    print(' Input XYZ along with ML-predicted 1s core binding energies:')
+    print('')
+    print(f'{N_at:4d}')
+    print(f' {Mol_title}')
 
     mol_Z = np.array(mol_Z)
     mol_R = np.array(mol_R)
@@ -187,11 +194,13 @@ def calc_be(XYZfile):
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
 
-            print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:6.2f} eV")
+           #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
+            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
 
         else:
 
-            print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
+           #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
+            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
 
     # Calculate elapsed time
     end_time = datetime.now()
