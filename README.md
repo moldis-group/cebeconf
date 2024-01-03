@@ -27,9 +27,10 @@
  - Install dependencies `numpy`, `qml`, `pandas`
 
 - Download and install the package
-```
+``` mkdir Test_cebeconf
+    cd Test_cebeconf
     git clone git@github.com:moldis-group/cebeconf.git
-    pip3 install -e /path/cebeconf
+    pip3 install -e cebeconf
 ```
  - Create an XYZ file at the UFF level (see below to learn about how to do this)
 
