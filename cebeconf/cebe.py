@@ -109,7 +109,7 @@ def calc_be(XYZfile):
             Zi=mol_Z[i_at]
             Ri=mol_R[i_at]
             k_at = 0
-            Rcutval, NN=cebeconf.rcut(mol_R, i_at)
+            Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi)
            #print(i_at, Rcutval, NN)
             for j_at in range(N_at):
                 Zj=mol_Z[j_at]
@@ -184,10 +184,14 @@ def calc_be(XYZfile):
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
 
+           #Kijmax=np.max(Kpred)
+           #Kijmed=np.median(Kpred)
+
             time2 = datetime.now()
             elapsed_time = time2-time1
             formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
            #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
+           #print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds {Kijmax:10.4f} {Kijmed:10.4f}")
             print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds")
 
         else:
