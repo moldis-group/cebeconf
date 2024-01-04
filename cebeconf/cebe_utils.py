@@ -1,15 +1,27 @@
-def rcut(mol_R, i_at):
+def rcut(mol_R, i_at, Z_i):
     '''
     Calculates cut-off radius adaptively for chopping large molecules with > 23 atoms
 
             Input:
                     mol_R(np.array, float): Atomic coordinates (N_at,3)
                     i_at (int): Index of the query atom
+                    Z_i(int): Atomic number of atom-i to decide the number of neighbors
 
             Returns:
                     cutoff (float): cut-off radius
     '''
     import numpy as np
+
+    Max_neigh=23
+
+    if Z_i == 6:
+        Max_neigh=16
+    elif Z_i == 7:
+        Max_neigh=12
+    elif Z_i == 8:
+        Max_neigh=8
+    elif Z_i == 9:
+        Max_neigh=4
 
     Ri=mol_R[i_at]
     cutoff=10.0
@@ -17,7 +29,7 @@ def rcut(mol_R, i_at):
     N_at=len(mol_R)
     Nneigh=N_at
 
-    while Nneigh > 23:
+    while Nneigh > Max_neigh:
         Nneigh=0
         for j_at in range(N_at):
             Rj=mol_R[j_at]
