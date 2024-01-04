@@ -1,4 +1,4 @@
-# `cebeconf` :construction:
+# `cebeconf`
 
 ```
              _                                __ 
