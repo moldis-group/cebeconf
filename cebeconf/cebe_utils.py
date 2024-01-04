@@ -1,5 +1,5 @@
 def rcut(mol_R, i_at):
-   '''
+    '''
     Calculates cut-off radius adaptively for chopping large molecules with > 23 atoms
 
             Input:
