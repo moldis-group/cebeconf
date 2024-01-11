@@ -17,7 +17,7 @@ print(' Current Time:', formatted_datetime)
 data_folder = resource_filename('cebeconf', 'data')
 
 # Main
-def calc_be(XYZfile,LargeSystem=False):
+def calc_be(XYZfile,LargeSystem=True):
 
     logo, header = cebeconf.headers()
     print(logo)
