@@ -87,7 +87,7 @@ Generate an initial geometry using [openbabel](http://openbabel.org/wiki/Main_Pa
 
 Relax tightly using UFF.
 
-    obminimize -sd -ff UFF -c 1e-8 benzene.xyz > benzene_UFF.xyz
+    obminimize -oxyz -sd -ff UFF -c 1e-8 benzene.xyz > benzene_UFF.xyz
 
 :warning: We have used Open Babel 2.4.1 in our workflow.
 
