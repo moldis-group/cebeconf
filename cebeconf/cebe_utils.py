@@ -1,4 +1,4 @@
-def rcut(mol_R, i_at, Z_i):
+def rcut(mol_R, i_at, Z_i,dict_MaxN):
     '''
     Calculates cut-off radius adaptively for chopping large molecules with > 23 atoms
 
@@ -15,13 +15,13 @@ def rcut(mol_R, i_at, Z_i):
     Max_neigh=23
 
     if Z_i == 6:
-        Max_neigh=16
+        Max_neigh=my_dict.get("MaxN_C")
     elif Z_i == 7:
-        Max_neigh=12
+        Max_neigh=my_dict.get("MaxN_N")
     elif Z_i == 8:
-        Max_neigh=8
+        Max_neigh=my_dict.get("MaxN_O")
     elif Z_i == 9:
-        Max_neigh=4
+        Max_neigh=my_dict.get("MaxN_F")
 
     Ri=mol_R[i_at]
     cutoff=10.0
@@ -30,14 +30,21 @@ def rcut(mol_R, i_at, Z_i):
     Nneigh=N_at
 
     while Nneigh > Max_neigh:
+
         Nneigh=0
+
         for j_at in range(N_at):
+
             Rj=mol_R[j_at]
             dRij=Ri-Rj
             Rij=np.sqrt(np.sum(dRij**2))
+
             if Rij < cutoff:
+
                 Nneigh=Nneigh+1
+
         cutoff=cutoff-0.01
+
     return cutoff, Nneigh
 
 def headers():

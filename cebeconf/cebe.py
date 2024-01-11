@@ -17,11 +17,15 @@ print(' Current Time:', formatted_datetime)
 data_folder = resource_filename('cebeconf', 'data')
 
 # Main
-def calc_be(XYZfile,LargeSystem=True):
+def calc_be(XYZfile,**args_MaxN):
 
     logo, header = cebeconf.headers()
     print(logo)
     print(header)
+
+    if args_MaxN:
+        for key, value in args_MaxN.items():
+            dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
 
     # Read XYZfile
     mol_R=[]
@@ -109,10 +113,7 @@ def calc_be(XYZfile,LargeSystem=True):
             Zi=mol_Z[i_at]
             Ri=mol_R[i_at]
             k_at = 0
-            if LargeSystem:
-                Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi)
-            else:
-                Rcutval=10.0
+            Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi, dict_MaxN)
            #print(i_at, Rcutval, NN)
             for j_at in range(N_at):
                 Zj=mol_Z[j_at]
