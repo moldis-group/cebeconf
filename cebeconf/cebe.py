@@ -23,9 +23,9 @@ def calc_be(XYZfile,**args_MaxN):
     print(logo)
     print(header)
 
+    dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
     if args_MaxN:
-        for key, value in args_MaxN.items():
-            dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
+        dict_MaxN=args_MaxN
 
     # Read XYZfile
     mol_R=[]

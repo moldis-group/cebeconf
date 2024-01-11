@@ -16,13 +16,13 @@ def rcut(mol_R, i_at, Z_i,dict_MaxN):
     Max_neigh=23
 
     if Z_i == 6:
-        Max_neigh=my_dict.get("MaxN_C")
+        Max_neigh=dict_MaxN.get("MaxN_C")
     elif Z_i == 7:
-        Max_neigh=my_dict.get("MaxN_N")
+        Max_neigh=dict_MaxN.get("MaxN_N")
     elif Z_i == 8:
-        Max_neigh=my_dict.get("MaxN_O")
+        Max_neigh=dict_MaxN.get("MaxN_O")
     elif Z_i == 9:
-        Max_neigh=my_dict.get("MaxN_F")
+        Max_neigh=dict_MaxN.get("MaxN_F")
 
     Ri=mol_R[i_at]
     cutoff=10.0
