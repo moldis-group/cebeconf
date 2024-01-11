@@ -1,4 +1,4 @@
 from cebeconf import calc_be
 
-calc_be('uracil.xyz',True)
+calc_be('glucose_chain_UFF.xyz',True)
 

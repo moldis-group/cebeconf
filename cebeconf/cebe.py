@@ -99,36 +99,36 @@ def calc_be(XYZfile,LargeSystem=True):
     mol_R = np.array(mol_R)
 
     # Calculate descriptor for query molecule
-    if LargeSystem:
-        if N_at <= 23:
-            desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
-        else:
-            desc_q=[]
-            for i_at in range(N_at):
-                mol_Z_atm=[]
-                mol_R_atm=[]
-                Zi=mol_Z[i_at]
-                Ri=mol_R[i_at]
-                k_at = 0
-                Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi)
-               #print(i_at, Rcutval, NN)
-                for j_at in range(N_at):
-                    Zj=mol_Z[j_at]
-                    Rj=mol_R[j_at]
-                    dRij=Ri-Rj
-                    Rij=np.sqrt(np.sum(dRij**2))
-                    if Rij < Rcutval:
-                        mol_Z_atm.append(Zj)
-                        mol_R_atm.append(Rj)
-                        if j_at == i_at:
-                            l_at = k_at
-                        k_at=k_at+1
-                mol_Z_atm = np.array(mol_Z_atm)
-                mol_R_atm = np.array(mol_R_atm)
-                desc_atm=generate_atomic_coulomb_matrix(mol_Z_atm, mol_R_atm, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
-                desc_q.append(desc_atm[l_at])
-    else:
+    if N_at <= 23:
         desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
+    else:
+        desc_q=[]
+        for i_at in range(N_at):
+            mol_Z_atm=[]
+            mol_R_atm=[]
+            Zi=mol_Z[i_at]
+            Ri=mol_R[i_at]
+            k_at = 0
+            if LargeSystem:
+                Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi)
+            else:
+                Rcutval=10.0
+           #print(i_at, Rcutval, NN)
+            for j_at in range(N_at):
+                Zj=mol_Z[j_at]
+                Rj=mol_R[j_at]
+                dRij=Ri-Rj
+                Rij=np.sqrt(np.sum(dRij**2))
+                if Rij < Rcutval:
+                    mol_Z_atm.append(Zj)
+                    mol_R_atm.append(Rj)
+                    if j_at == i_at:
+                        l_at = k_at
+                    k_at=k_at+1
+            mol_Z_atm = np.array(mol_Z_atm)
+            mol_R_atm = np.array(mol_R_atm)
+            desc_atm=generate_atomic_coulomb_matrix(mol_Z_atm, mol_R_atm, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
+            desc_q.append(desc_atm[l_at])
 
 
     # Predict with KRR
