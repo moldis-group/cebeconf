@@ -109,11 +109,8 @@ def calc_be(XYZfile,LargeSystem=True):
             Zi=mol_Z[i_at]
             Ri=mol_R[i_at]
             k_at = 0
-            if LargeSystem:
-                Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi)
-            else:
-                Rcutval=10.0
-           #print(i_at, Rcutval, NN)
+            Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi,LargeSystem)
+            print(i_at, Rcutval, NN)
             for j_at in range(N_at):
                 Zj=mol_Z[j_at]
                 Rj=mol_R[j_at]
