@@ -23,10 +23,6 @@ def calc_be(XYZfile,**args_MaxN):
     print(logo)
     print(header)
 
-    dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
-    if args_MaxN:
-        dict_MaxN=args_MaxN
-
     # Read XYZfile
     mol_R=[]
     mol_Z=[]
@@ -104,8 +100,15 @@ def calc_be(XYZfile,**args_MaxN):
 
     # Calculate descriptor for query molecule
     if N_at <= 23:
+
         desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
+
     else:
+
+        dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
+        if args_MaxN:
+            dict_MaxN=args_MaxN.copy()
+
         desc_q=[]
         for i_at in range(N_at):
             mol_Z_atm=[]
@@ -114,7 +117,7 @@ def calc_be(XYZfile,**args_MaxN):
             Ri=mol_R[i_at]
             k_at = 0
             Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi, dict_MaxN)
-           #print(i_at, Rcutval, NN)
+            #print(i_at, Rcutval, NN)
             for j_at in range(N_at):
                 Zj=mol_Z[j_at]
                 Rj=mol_R[j_at]
