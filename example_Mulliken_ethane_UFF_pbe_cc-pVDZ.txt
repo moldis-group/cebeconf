@@ -1,0 +1,35 @@
+Output of Mulliken.out : 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Atom number     1:
+
+    State       eigenvalue  occ.number       total         l=0         l=1         l=2
+
+k point number:     1: (   0.00000000   0.00000000   0.00000000 ); weight:   1.00000000
+
+        1       -269.36573   2.0000000     0.40690     0.40697     0.00001    -0.00008
+        2       -269.36354   2.0000000     0.59324     0.59293     0.00031     0.00000
+        .          ..           ..           ..            ..       ..            ..
+        .          ..           ..           ..            ..       ..            ..
+
+Atom number     2:
+
+    State       eigenvalue  occ.number       total         l=0         l=1         l=2
+
+k point number:     1: (   0.00000000   0.00000000   0.00000000 ); weight:   1.00000000
+
+        1       -269.36573   2.0000000     0.59310     0.59321    -0.00005    -0.00006
+        2       -269.36354   2.0000000     0.40705     0.40669     0.00037    -0.00001
+        .          ..           ..           ..            ..       ..            ..
+        .          ..           ..           ..            ..       ..            ..
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The energy are assigned based on the maximum value in "total" . For example:
+
+For Atom number 1, the highest total is 0.59324 and it corresponds to eigenvalue -269.36354, so
+atom number 1 has energy -269.36354.
+
+Similarly, for Atom number 2, the highest total is 0.59310 and it corresponds to eigenvalue 
+  -269.36573, so atom number 2 has energy -269.36573.
+
