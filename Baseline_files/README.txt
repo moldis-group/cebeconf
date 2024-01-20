@@ -14,7 +14,7 @@ The matrix is designated as follows:
   .
   .
   atom_n
-4. Each row are the Mulliken occupations for that atom corresponding to KS energies of core levels:
+4. Each row are the Mulliken occupations for that atom corresponding to KS energies of 1s core levels:
 Suppose for the 1st atom in a system containing 3 CONF atoms, the occupations corresponding to atom number 1 in the geometry file are in the first row:
 dummy   E_1  E_2  E_3
 atom_1  0.0  0.1  0.9
