@@ -8,7 +8,11 @@ from cebeconf import calc_be
 
 # Change the number of neighbors for F
 
-for FN in range(1,12): 
-    Max_neigh={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":FN} 
-    print("===",Max_neigh,"===")
-    calc_be('1.xyz', **Max_neigh)
+#for FN in range(1,12): 
+#    Max_neigh={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":FN} 
+#    print("===",Max_neigh,"===")
+#    calc_be('1.xyz', 'direct' **Max_neigh)
+
+Max_neigh={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":8} 
+calc_be('1.xyz', 'direct', **Max_neigh)
+calc_be('1.xyz', 'delta', **Max_neigh)

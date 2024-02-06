@@ -17,7 +17,7 @@ print(' Current Time:', formatted_datetime)
 data_folder = resource_filename('cebeconf', 'data')
 
 # Main
-def calc_be(XYZfile,**args_MaxN):
+def calc_be(XYZfile,KRR_model,**args_MaxN):
 
     logo, header = cebeconf.headers()
     print(logo)
@@ -57,25 +57,43 @@ def calc_be(XYZfile,**args_MaxN):
     # Load data
     time1 = datetime.now()
     X_train_C=np.load(os.path.join(data_folder, 'C_representation.npy'))
-    df = pd.read_csv(os.path.join(data_folder, 'C_model_direct.csv'), header=None)
-    model_C=np.array(df.iloc[:,0].values)
-
     X_train_N=np.load(os.path.join(data_folder, 'N_representation.npy'))
-    df = pd.read_csv(os.path.join(data_folder, 'N_model_direct.csv'), header=None)
-    model_N=np.array(df.iloc[:,0].values)
-
     X_train_O=np.load(os.path.join(data_folder, 'O_representation.npy'))
-    df = pd.read_csv(os.path.join(data_folder, 'O_model_direct.csv'), header=None)
-    model_O=np.array(df.iloc[:,0].values)
-
     X_train_F=np.load(os.path.join(data_folder, 'F_representation.npy'))
-    df = pd.read_csv(os.path.join(data_folder, 'F_model_direct.csv'), header=None)
-    model_F=np.array(df.iloc[:,0].values)
 
-    sigma_C=5712.74014896
-    sigma_N=9203.50735350
-    sigma_O=12841.51702904
-    sigma_F=87500.54782720
+    if KRR_model.lower() == 'direct':
+
+        df = pd.read_csv(os.path.join(data_folder, 'C_model_direct.csv'), header=None)
+        model_C=np.array(df.iloc[:,0].values)
+        df = pd.read_csv(os.path.join(data_folder, 'N_model_direct.csv'), header=None)
+        model_N=np.array(df.iloc[:,0].values)
+        df = pd.read_csv(os.path.join(data_folder, 'O_model_direct.csv'), header=None)
+        model_O=np.array(df.iloc[:,0].values)
+        df = pd.read_csv(os.path.join(data_folder, 'F_model_direct.csv'), header=None)
+        model_F=np.array(df.iloc[:,0].values)
+
+        #using median kij
+        sigma_C=5712.740 #0.84
+        sigma_N=9203.507 #0.90
+        sigma_O=12841.517 #0.93
+        sigma_F=87500.548 #0.99
+
+    if KRR_model.lower() == 'delta':
+
+        df = pd.read_csv(os.path.join(data_folder, 'C_model_delta.csv'), header=None)
+        model_C=np.array(df.iloc[:,0].values)
+        df = pd.read_csv(os.path.join(data_folder, 'N_model_delta.csv'), header=None)
+        model_N=np.array(df.iloc[:,0].values)
+        df = pd.read_csv(os.path.join(data_folder, 'O_model_delta.csv'), header=None)
+        model_O=np.array(df.iloc[:,0].values)
+        df = pd.read_csv(os.path.join(data_folder, 'F_model_delta.csv'), header=None)
+        model_F=np.array(df.iloc[:,0].values)
+
+        #using median kij
+        sigma_C=1947.156 #0.60
+        sigma_N=9239.914 #0.90
+        sigma_O=3242.138 # 0.750
+        sigma_F=6320.987 # 0.870
 
     time2 = datetime.now()
     elapsed_time = time2-time1
