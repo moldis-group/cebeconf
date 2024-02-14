@@ -1,4 +1,4 @@
-Use xyz ('test.xyz') to generate atom separated representations using representation.py
+Use xyz file ('test.xyz') to generate atom separated representations using representation.py
 
 >>> from representation import get_representation
 >>> get_representation('test.xyz')
