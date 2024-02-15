@@ -17,7 +17,7 @@ print(' Current Time:', formatted_datetime)
 data_folder = resource_filename('cebeconf', 'data')
 
 # Main
-def calc_be(XYZfile,KRR_model,**args_MaxN):
+def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
 
     logo, header = cebeconf.headers()
     print(logo)
@@ -56,44 +56,88 @@ def calc_be(XYZfile,KRR_model,**args_MaxN):
 
     # Load data
     time1 = datetime.now()
-    X_train_C=np.load(os.path.join(data_folder, 'C_representation.npy'))
-    X_train_N=np.load(os.path.join(data_folder, 'N_representation.npy'))
-    X_train_O=np.load(os.path.join(data_folder, 'O_representation.npy'))
-    X_train_F=np.load(os.path.join(data_folder, 'F_representation.npy'))
 
-    if KRR_model.lower() == 'direct':
+    if rep.lower() == 'acm':
 
-        df = pd.read_csv(os.path.join(data_folder, 'C_model_direct.csv'), header=None)
-        model_C=np.array(df.iloc[:,0].values)
-        df = pd.read_csv(os.path.join(data_folder, 'N_model_direct.csv'), header=None)
-        model_N=np.array(df.iloc[:,0].values)
-        df = pd.read_csv(os.path.join(data_folder, 'O_model_direct.csv'), header=None)
-        model_O=np.array(df.iloc[:,0].values)
-        df = pd.read_csv(os.path.join(data_folder, 'F_model_direct.csv'), header=None)
-        model_F=np.array(df.iloc[:,0].values)
+        X_train_C=np.load(os.path.join(data_folder, 'C_representation_ACM.npy'))
+        X_train_N=np.load(os.path.join(data_folder, 'N_representation_ACM.npy'))
+        X_train_O=np.load(os.path.join(data_folder, 'O_representation_ACM.npy'))
+        X_train_F=np.load(os.path.join(data_folder, 'F_representation_ACM.npy'))
+    
+        if KRR_model.lower() == 'direct':
+    
+            df = pd.read_csv(os.path.join(data_folder, 'C_model_direct_ACM.csv'), header=None)
+            model_C=np.array(df.iloc[:,0].values)
+            df = pd.read_csv(os.path.join(data_folder, 'N_model_direct_ACM.csv'), header=None)
+            model_N=np.array(df.iloc[:,0].values)
+            df = pd.read_csv(os.path.join(data_folder, 'O_model_direct_ACM.csv'), header=None)
+            model_O=np.array(df.iloc[:,0].values)
+            df = pd.read_csv(os.path.join(data_folder, 'F_model_direct_ACM.csv'), header=None)
+            model_F=np.array(df.iloc[:,0].values)
+    
+            #using median kij
+            sigma_C=1231.742 # 0.75
+            sigma_N=2092.483 # 0.84
+            sigma_O=3669.079 # 0.90
+            sigma_F=10779.688 # 0.96
+    
+        if KRR_model.lower() == 'delta':
+    
+            df = pd.read_csv(os.path.join(data_folder, 'C_model_delta_ACM.csv'), header=None)
+            model_C=np.array(df.iloc[:,0].values)
+            df = pd.read_csv(os.path.join(data_folder, 'N_model_delta_ACM.csv'), header=None)
+            model_N=np.array(df.iloc[:,0].values)
+            df = pd.read_csv(os.path.join(data_folder, 'O_model_delta_ACM.csv'), header=None)
+            model_O=np.array(df.iloc[:,0].values)
+            df = pd.read_csv(os.path.join(data_folder, 'F_model_delta_ACM.csv'), header=None)
+            model_F=np.array(df.iloc[:,0].values)
+    
+            #using median kij
+            sigma_C=485.092 # 0.48
+            sigma_N=646.678 # 0.57
+            sigma_O=831.413 # 0.63
+            sigma_F=1766.171 # 0.78
 
-        #using median kij
-        sigma_C=5712.740 #0.84
-        sigma_N=9203.507 #0.90
-        sigma_O=12841.517 #0.93
-        sigma_F=87500.548 #0.99
+    if rep.lower() == 'atmenv':
 
-    if KRR_model.lower() == 'delta':
-
-        df = pd.read_csv(os.path.join(data_folder, 'C_model_delta.csv'), header=None)
-        model_C=np.array(df.iloc[:,0].values)
-        df = pd.read_csv(os.path.join(data_folder, 'N_model_delta.csv'), header=None)
-        model_N=np.array(df.iloc[:,0].values)
-        df = pd.read_csv(os.path.join(data_folder, 'O_model_delta.csv'), header=None)
-        model_O=np.array(df.iloc[:,0].values)
-        df = pd.read_csv(os.path.join(data_folder, 'F_model_delta.csv'), header=None)
-        model_F=np.array(df.iloc[:,0].values)
-
-        #using median kij
-        sigma_C=1947.156 #0.60
-        sigma_N=9239.914 #0.90
-        sigma_O=3242.138 # 0.750
-        sigma_F=6320.987 # 0.870
+        X_train_C=np.load(os.path.join(data_folder, 'C_representation_AtmEnv.npy'))
+        X_train_N=np.load(os.path.join(data_folder, 'N_representation_AtmEnv.npy'))
+        X_train_O=np.load(os.path.join(data_folder, 'O_representation_AtmEnv.npy'))
+        X_train_F=np.load(os.path.join(data_folder, 'F_representation_AtmEnv.npy'))
+    
+        if KRR_model.lower() == 'direct':
+    
+            df = pd.read_csv(os.path.join(data_folder, 'C_model_direct_AtmEnv.csv'), header=None)
+            model_C=np.array(df.iloc[:,0].values)                        
+            df = pd.read_csv(os.path.join(data_folder, 'N_model_direct_AtmEnv.csv'), header=None)
+            model_N=np.array(df.iloc[:,0].values)                        
+            df = pd.read_csv(os.path.join(data_folder, 'O_model_direct_AtmEnv.csv'), header=None)
+            model_O=np.array(df.iloc[:,0].values)                        
+            df = pd.read_csv(os.path.join(data_folder, 'F_model_direct_AtmEnv.csv'), header=None)
+            model_F=np.array(df.iloc[:,0].values)
+    
+            #using median kij
+            sigma_C=3.483 #0.21
+            sigma_N=4.234 # 0.51
+            sigma_O=5.530 # 0.75
+            sigma_F=7.488 # 0.96
+    
+        if KRR_model.lower() == 'delta':
+    
+            df = pd.read_csv(os.path.join(data_folder, 'C_model_delta_AtmEnv.csv'), header=None)
+            model_C=np.array(df.iloc[:,0].values)                       
+            df = pd.read_csv(os.path.join(data_folder, 'N_model_delta_AtmEnv.csv'), header=None)
+            model_N=np.array(df.iloc[:,0].values)                       
+            df = pd.read_csv(os.path.join(data_folder, 'O_model_delta_AtmEnv.csv'), header=None)
+            model_O=np.array(df.iloc[:,0].values)                       
+            df = pd.read_csv(os.path.join(data_folder, 'F_model_delta_AtmEnv.csv'), header=None)
+            model_F=np.array(df.iloc[:,0].values)
+    
+            #using median kij
+            sigma_C=3.598 # 0.24
+            sigma_N=3.927 # 0.45
+            sigma_O=4.700 # 0.66
+            sigma_F=4.681 # 0.900
 
     time2 = datetime.now()
     elapsed_time = time2-time1
@@ -116,41 +160,56 @@ def calc_be(XYZfile,KRR_model,**args_MaxN):
     mol_Z = np.array(mol_Z)
     mol_R = np.array(mol_R)
 
+    desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
+
+#   print(len(desc_q[1]))
+
+#   for i in range(6):
+#       for j in range(6):
+#           checkdij=np.linalg.norm(desc_q[i]-desc_q[j])
+#           print(i,j,checkdij)
+
     # Calculate descriptor for query molecule
-    if N_at <= 23:
+ #  if N_at <= 23:
 
-        desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
+##      desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=6.0, central_decay=0.0,interaction_cutoff=6.0,interaction_decay=0,indices=None)
+ #      desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
 
-    else:
+ #      for i in range(6):
+ #          for j in range(6):
+ #              checkdij=np.linalg.norm(desc_q[i]-desc_q[j])
+ #              print(i,j,checkdij)
 
-        dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
-        if args_MaxN:
-            dict_MaxN=args_MaxN.copy()
+ #  else:
 
-        desc_q=[]
-        for i_at in range(N_at):
-            mol_Z_atm=[]
-            mol_R_atm=[]
-            Zi=mol_Z[i_at]
-            Ri=mol_R[i_at]
-            k_at = 0
-            Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi, dict_MaxN)
-            #print(i_at, Rcutval, NN)
-            for j_at in range(N_at):
-                Zj=mol_Z[j_at]
-                Rj=mol_R[j_at]
-                dRij=Ri-Rj
-                Rij=np.sqrt(np.sum(dRij**2))
-                if Rij < Rcutval:
-                    mol_Z_atm.append(Zj)
-                    mol_R_atm.append(Rj)
-                    if j_at == i_at:
-                        l_at = k_at
-                    k_at=k_at+1
-            mol_Z_atm = np.array(mol_Z_atm)
-            mol_R_atm = np.array(mol_R_atm)
-            desc_atm=generate_atomic_coulomb_matrix(mol_Z_atm, mol_R_atm, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
-            desc_q.append(desc_atm[l_at])
+ #      dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
+ #      if args_MaxN:
+ #          dict_MaxN=args_MaxN.copy()
+
+ #      desc_q=[]
+ #      for i_at in range(N_at):
+ #          mol_Z_atm=[]
+ #          mol_R_atm=[]
+ #          Zi=mol_Z[i_at]
+ #          Ri=mol_R[i_at]
+ #          k_at = 0
+ #          Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi, dict_MaxN)
+ #          #print(i_at, Rcutval, NN)
+ #          for j_at in range(N_at):
+ #              Zj=mol_Z[j_at]
+ #              Rj=mol_R[j_at]
+ #              dRij=Ri-Rj
+ #              Rij=np.sqrt(np.sum(dRij**2))
+ #              if Rij < Rcutval:
+ #                  mol_Z_atm.append(Zj)
+ #                  mol_R_atm.append(Rj)
+ #                  if j_at == i_at:
+ #                      l_at = k_at
+ #                  k_at=k_at+1
+ #          mol_Z_atm = np.array(mol_Z_atm)
+ #          mol_R_atm = np.array(mol_R_atm)
+ #          desc_atm=generate_atomic_coulomb_matrix(mol_Z_atm, mol_R_atm, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
+ #          desc_q.append(desc_atm[l_at])
 
 
     # Predict with KRR
@@ -173,13 +232,17 @@ def calc_be(XYZfile,KRR_model,**args_MaxN):
                 sigma=sigma_F
 
             time1 = datetime.now()
+            if rep.lower() == 'acm':
+                choice_kernel='L'
+            if rep.lower() == 'atmenv':
+                choice_kernel='G'
 
             if mol_Z[i_at] == 6:
 
                 Kpred=[]
                 for i in range(len(X_train_C)):
                     dT=X_train_C[i]
-                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel(choice_kernel,sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_C)
 
@@ -188,7 +251,7 @@ def calc_be(XYZfile,KRR_model,**args_MaxN):
                 Kpred=[]
                 for i in range(len(X_train_N)):
                     dT=X_train_N[i]
-                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel(choice_kernel,sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_N)
 
@@ -197,7 +260,7 @@ def calc_be(XYZfile,KRR_model,**args_MaxN):
                 Kpred=[]
                 for i in range(len(X_train_O)):
                     dT=X_train_O[i]
-                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel(choice_kernel,sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_O)
 
@@ -206,19 +269,19 @@ def calc_be(XYZfile,KRR_model,**args_MaxN):
                 Kpred=[]
                 for i in range(len(X_train_F)):
                     dT=X_train_F[i]
-                    Kiq=cebeconf.kernel('L',sigma,dT,dQ)
+                    Kiq=cebeconf.kernel(choice_kernel,sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
 
-           #Kijmax=np.max(Kpred)
-           #Kijmed=np.median(Kpred)
+            Kijmax=np.max(Kpred)
+            Kijmed=np.median(Kpred)
 
             time2 = datetime.now()
             elapsed_time = time2-time1
             formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
            #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
-           #print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds {Kijmax:10.4f} {Kijmed:10.4f}")
-            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds")
+            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds {Kijmax:10.4f} {Kijmed:10.4f}")
+           #print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds")
 
         else:
 
