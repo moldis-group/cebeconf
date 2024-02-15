@@ -160,8 +160,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     mol_Z = np.array(mol_Z)
     mol_R = np.array(mol_R)
 
-    desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
-
+    if rep.lower() == 'acm':
+        desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
+    if rep.lower() == 'atmenv':
+        desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R,23,6.0)
 #   print(len(desc_q[1]))
 
 #   for i in range(6):

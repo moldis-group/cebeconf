@@ -24,7 +24,7 @@ from cebeconf import calc_be
 #calc_be('benzene.xyz', 'delta')
 
 
-calc_be('bigqm7w_002951.xyz', 'direct', 'ACM')
-calc_be('bigqm7w_002951.xyz', 'delta', 'ACM')
-calc_be('bigqm7w_002951.xyz', 'direct', 'AtmEnv')
-calc_be('bigqm7w_002951.xyz', 'delta', 'AtmEnv')
+calc_be('test.xyz', 'direct', 'ACM')
+calc_be('test.xyz', 'delta', 'ACM')
+calc_be('test.xyz', 'direct', 'AtmEnv')
+calc_be('test.xyz', 'delta', 'AtmEnv')

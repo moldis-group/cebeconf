@@ -1,8 +1,0 @@
-Use xyz file ('test.xyz') to generate atom separated representations using representation.py
-
->>> from representation import get_representation
->>> get_representation('test.xyz')
-
-This generates rep_$i.txt , $i=C,N,O,F (if present in molecule)
-Each rep_$i.txt contains n-lines (for a molecule containing n $i atoms). Representationsof each atom are separated by '\n'
-Each line has 128-features separated by commas ','  
