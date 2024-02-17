@@ -11,17 +11,10 @@ import cebeconf
 start_time = datetime.now()
 formatted_datetime = start_time.strftime("%Y-%m-%d %H:%M:%S")
 
-print('')
-print(' Current Time:', formatted_datetime)
-
 data_folder = resource_filename('cebeconf', 'data')
 
 # Main
 def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
-
-    logo, header = cebeconf.headers()
-    print(logo)
-    print(header)
 
     # Read XYZfile
     mol_R=[]
@@ -142,20 +135,6 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     time2 = datetime.now()
     elapsed_time = time2-time1
     formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
-    print(f' Loading ML models took {formatted_elapsed_time} seconds')
-
-    print('')
-    print(f' Reading geometry from {XYZfile} containing {N_at:4d} atoms')
-    print('')
-
-    if N_at > 23:
-        print(f' It\'s a big molecule!')
-        print('')
-
-    print(' Input XYZ along with ML-predicted 1s core binding energies:')
-    print('')
-    print(f'{N_at:4d}')
-    print(f' {Mol_title}')
 
     mol_Z = np.array(mol_Z)
     mol_R = np.array(mol_R)
@@ -163,58 +142,11 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     if rep.lower() == 'acm':
         desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
     if rep.lower() == 'atmenv':
+        #print(mol_Z,mol_R)
         desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R,23,6.0)
-#   print(len(desc_q[1]))
 
-#   for i in range(6):
-#       for j in range(6):
-#           checkdij=np.linalg.norm(desc_q[i]-desc_q[j])
-#           print(i,j,checkdij)
-
-    # Calculate descriptor for query molecule
- #  if N_at <= 23:
-
-##      desc_q = generate_atomic_coulomb_matrix(mol_Z, mol_R, size=23, sorting='distance', central_cutoff=6.0, central_decay=0.0,interaction_cutoff=6.0,interaction_decay=0,indices=None)
- #      desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
-
- #      for i in range(6):
- #          for j in range(6):
- #              checkdij=np.linalg.norm(desc_q[i]-desc_q[j])
- #              print(i,j,checkdij)
-
- #  else:
-
- #      dict_MaxN={"MaxN_C":16, "MaxN_N":12, "MaxN_O":8, "MaxN_F":4}      
- #      if args_MaxN:
- #          dict_MaxN=args_MaxN.copy()
-
- #      desc_q=[]
- #      for i_at in range(N_at):
- #          mol_Z_atm=[]
- #          mol_R_atm=[]
- #          Zi=mol_Z[i_at]
- #          Ri=mol_R[i_at]
- #          k_at = 0
- #          Rcutval, NN=cebeconf.rcut(mol_R, i_at, Zi, dict_MaxN)
- #          #print(i_at, Rcutval, NN)
- #          for j_at in range(N_at):
- #              Zj=mol_Z[j_at]
- #              Rj=mol_R[j_at]
- #              dRij=Ri-Rj
- #              Rij=np.sqrt(np.sum(dRij**2))
- #              if Rij < Rcutval:
- #                  mol_Z_atm.append(Zj)
- #                  mol_R_atm.append(Rj)
- #                  if j_at == i_at:
- #                      l_at = k_at
- #                  k_at=k_at+1
- #          mol_Z_atm = np.array(mol_Z_atm)
- #          mol_R_atm = np.array(mol_R_atm)
- #          desc_atm=generate_atomic_coulomb_matrix(mol_Z_atm, mol_R_atm, size=23, sorting='distance', central_cutoff=10.0, interaction_cutoff=10.0)
- #          desc_q.append(desc_atm[l_at])
-
-
-    # Predict with KRR
+    BE = []
+   # Predict with KRR
     for i_at in range(N_at):
 
         avail=[6,7,8,9]
@@ -274,7 +206,7 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
                     Kiq=cebeconf.kernel(choice_kernel,sigma,dT,dQ)
                     Kpred.append(Kiq)
                 Epred=np.dot(Kpred,model_F)
-
+            BE.append(Epred)
             Kijmax=np.max(Kpred)
             Kijmed=np.median(Kpred)
 
@@ -282,18 +214,18 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             elapsed_time = time2-time1
             formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
            #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
-            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds {Kijmax:10.4f} {Kijmed:10.4f}")
+      #      print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds {Kijmax:10.4f} {Kijmed:10.4f}")
            #print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds")
 
-        else:
+     #   else:
 
            #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
-            print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
+    #        print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
 
     # Calculate elapsed time
-    end_time = datetime.now()
-    elapsed_time = end_time - start_time
-    formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
-    print('')
-    print(" Total elapsed Time (seconds):", formatted_elapsed_time)
-    return
+#    end_time = datetime.now()
+#    elapsed_time = end_time - start_time
+#    formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
+#    print('')
+#    print(" Total elapsed Time (seconds):", formatted_elapsed_time)
+    return  BE

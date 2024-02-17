@@ -58,7 +58,7 @@ def LocalCM(mol_Z, mol_R, Max_at, Rcut):
 
     return desc
 
-def AtomicEnvt(mol_Z, mol_R, Max_at=None, Rcut=None):
+def AtomicEnvt(mol_Z, mol_R, version=0.3, Max_at=None, Rcut=None):
     '''
     Calculates Local atomic environment for each atom
     '''
@@ -69,6 +69,12 @@ def AtomicEnvt(mol_Z, mol_R, Max_at=None, Rcut=None):
     import warnings
     from pkg_resources import resource_filename
 
+    if os.path.isfile('data.db') == True:
+        os.remove('data.db')
+    if os.path.isfile('data.pt') == True:
+        os.remove('data.pt')
+    if os.path.isfile('absurd_name.xyz') == True:
+        os.remove('absurd_name.xyz')
 
     warnings.filterwarnings("ignore", message="The given NumPy array is not writable") #Numpy array [0.] is generated here, hence the warning
     warnings.filterwarnings("ignore", message="Use get_global_number_of_atoms()")  #Generated at for batch in test_loader
@@ -78,7 +84,7 @@ def AtomicEnvt(mol_Z, mol_R, Max_at=None, Rcut=None):
 
 
     #Dummy xyz as input for Schnet model
-    f = open('input.xyz','w')
+    f = open('absurd_name.xyz','w')
     print(len(mol_Z), file=f)
     print("eng=  0.000",end="", file=f)
     idx = 0
@@ -96,31 +102,38 @@ def AtomicEnvt(mol_Z, mol_R, Max_at=None, Rcut=None):
     f.close()
 
     #Convert input file into .db file
-    atoms = read('input.xyz', index=":")
+    atoms = read('absurd_name.xyz', index=":")
     torch.save(atoms, "data.pt")
     data = torch.load("data.pt")
     property_ls =  [{"energy": np.array([mol.info["eng"]], dtype="float32")} for mol in data]
+    
     dataset = spk.AtomsData("data.db", available_properties=["energy"])
+    #dataset = spk.data.AtomsDataModule( 'data.db', batch_size=1, property_units={'energy':'eV'})
     dataset.add_systems(data, property_ls)
     test_loader = spk.AtomsLoader(dataset, batch_size=1)
     for item in atom_dic:
         if item != 1 and len(atom_dic[item][2]) > 0:
             model = torch.load(os.path.join(data_folder, atom_dic[item][1]), map_location=torch.device('cpu'))
+            #model = torch.load(os.path.join(data_folder, 'model_C'), map_location=torch.device('cpu'))
+            #print(f"{len(atom_dic[item][2])} {atom_dic[item][0]} atoms are present. {atom_dic[item][1]} will be used to generate representation ")
             for batch in test_loader:
                 pred=model(batch)
                 representation = batch["representation"]
-                #print(atom_dic[item][2])
                 for idx in atom_dic[item][2]:
+                    #print(representation[0][idx])
                     for number in representation[0][idx]:
+                        #print(float(number.item()),end=" ")
                         desc[idx].append(number.item())
+                    #print("")
                     #desc[idx] = torch.tensor.detach(representation[0][idx]).numpy()
         else:
             for idx in atom_dic[item][2]:
                 desc[idx] = [0.0 for i in range(128)]
-
+    #elif version == 3:
+    #    print("Update this")
     desc = np.array(desc)
-        
-    os.remove('input.xyz')
+    #print(desc[0][0])
+    os.remove('absurd_name.xyz')
     os.remove("data.db")
     os.remove("data.pt")
     return desc
