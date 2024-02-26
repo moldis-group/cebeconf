@@ -1,0 +1,3 @@
+To obtain the descriptors from your schnetpack version, please perform ./get_result.sh in each folder. You will get the mean absolute error between the atomic environments obtained from our version and calculated from your version.
+
+~~~~~~output folder consists of atomic environments for C in CH4, N in NH3, O in H2O and F in HF from our versions.
