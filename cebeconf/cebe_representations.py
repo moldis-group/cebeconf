@@ -43,10 +43,10 @@ def LocalCM(mol_Z, mol_R, Max_at, Rcut):
                 fjk=damp(rjk,Rcut)
                 if i == j:
                     val=0.5*mol_Z[i]**2.4
-                    CMmat[i][i]=val*fik**2
+                    CMmat[i][i]=val * fik**2
                 else:
                     val=mol_Z[i]*mol_Z[j]/rij
-                    CMmat[i][j]=val*fij*fjk*fjk
+                    CMmat[i][j]=val * fij * fjk * fik
 
         CM=[]
         for i in range(Max_at):

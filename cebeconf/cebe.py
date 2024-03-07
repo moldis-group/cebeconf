@@ -145,6 +145,16 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
         #print(mol_Z,mol_R)
         desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R,23,6.0)
 
+#   for i_at in range(6):
+#       for j_at in range(6):
+#           dQi=desc_q[i_at]
+#           dQi=np.array([dQi])
+#           dQj=desc_q[j_at]
+#           dQj=np.array([dQj])
+#           dQij=np.sum(np.abs(dQi-dQj))
+#           print(i_at,j_at,dQij)
+
+
     BE = []
    # Predict with KRR
     for i_at in range(N_at):
