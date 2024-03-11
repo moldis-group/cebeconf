@@ -69,7 +69,7 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             model_F=np.array(df.iloc[:,0].values)
     
             #using median kij
-            sigma_C=1231.742 # 0.75
+            sigma_C=3390.345 # 0.84
             sigma_N=2092.483 # 0.84
             sigma_O=3669.079 # 0.90
             sigma_F=10779.688 # 0.96
