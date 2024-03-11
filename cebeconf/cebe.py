@@ -70,9 +70,9 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     
             #using median kij
             sigma_C=3390.345 # 0.84
-            sigma_N=2092.483 # 0.84
-            sigma_O=3669.079 # 0.90
-            sigma_F=10779.688 # 0.96
+            sigma_N=8468.574 # 0.93
+            sigma_O=8742.836 # 0.93
+            sigma_F=15211.932 # 0.96
     
         if KRR_model.lower() == 'delta':
     
@@ -140,10 +140,9 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     mol_R = np.array(mol_R)
 
     if rep.lower() == 'acm':
-        desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
+        desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 100.0)
     if rep.lower() == 'atmenv':
-        #print(mol_Z,mol_R)
-        desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R,23,6.0)
+        desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R)
 
 #   for i_at in range(6):
 #       for j_at in range(6):

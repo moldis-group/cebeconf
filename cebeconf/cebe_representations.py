@@ -58,7 +58,7 @@ def LocalCM(mol_Z, mol_R, Max_at, Rcut):
 
     return desc
 
-def AtomicEnvt(mol_Z, mol_R, version=0.3, Max_at=None, Rcut=None):
+def AtomicEnvt(mol_Z, mol_R, version=0.3):
     '''
     Calculates Local atomic environment for each atom
     '''
