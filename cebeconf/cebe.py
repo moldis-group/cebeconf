@@ -1,8 +1,6 @@
 import os
 import numpy as np
 import pandas as pd
-import qml
-from qml.representations import generate_atomic_coulomb_matrix
 from setuptools import find_packages, setup
 from pkg_resources import resource_filename
 from datetime import datetime
