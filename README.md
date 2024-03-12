@@ -26,7 +26,7 @@
 
 # Run `cebeconf` ✨
 
- - Install dependencies `numpy`, `qml`, `pandas`
+ - Install dependencies `numpy`, `pandas`
 
 - Download and install the package
 ```
@@ -98,8 +98,6 @@ Relax tightly using UFF.
 Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
 Digital Discovery, 1 (2022) 689-702.    
 
-[Ref-2] [_AS Christensen, FA Faber, B Huang, LA Bratholm, A Tkatchenko, KR Muller, OA von Lilienfeld (2017) "QML: A Python Toolkit for Quantum Machine Learning, https://github.com/qmlcode/qml"_](https://github.com/qmlcode/qml)  
-
-[Ref-3][_Accurate Core-Electron Binding Energies using Machine Learning Models Trained on the Small Organic Molecules Chemical Space_](arxiv link)    
+[Ref-2][_Accurate Core-Electron Binding Energies using Machine Learning Models Trained on the Small Organic Molecules Chemical Space_](arxiv link)    
 Susmita Tripathy, Shweta Jindal, Raghunathan Ramakrishnan      
 To be posted in Arxiv. 
