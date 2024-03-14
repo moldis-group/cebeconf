@@ -84,10 +84,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             model_F=np.array(df.iloc[:,0].values)
     
             #using median kij
-            sigma_C=485.092 # 0.48
-            sigma_N=646.678 # 0.57
-            sigma_O=831.413 # 0.63
-            sigma_F=1766.171 # 0.78
+            sigma_C=958.952 #0.540
+            sigma_N=1476.834 #0.66
+            sigma_O=2218.407 # 0.75
+            sigma_F=4476.221 # 0.87
 
     if rep.lower() == 'atmenv':
 
