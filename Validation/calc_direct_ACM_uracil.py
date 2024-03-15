@@ -6,9 +6,9 @@ import numpy as np
 import os 
 from cebeconf import calc_be
 
-dir='/Users/rr/repos/cebeconf/Validation/uracil/'
+dir='./uracil/'
 
-with open(dir+'uracil.dat', 'r') as file:
+with open(dir+'uracil_direct.dat', 'r') as file:
     comment = file.readline()
     dft_data = file.readlines() 
 file.close()
