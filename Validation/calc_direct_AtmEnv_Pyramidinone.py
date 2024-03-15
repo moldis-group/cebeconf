@@ -30,7 +30,7 @@ for folder in folders:
             for r in range(loop):
                 molecule_name = path +'/'+ folder + '_' + str(p) + '_' + str(q) + '_'                     + str(r) + '.xyz'
 
-                out_acm = calc_be(molecule_name, 'direct', 'ACM')
+                out_acm = calc_be(molecule_name, 'direct', 'AtmEnv')
 
                 with open(molecule_name, 'r') as file:
                     no_of_atoms = file.readline()

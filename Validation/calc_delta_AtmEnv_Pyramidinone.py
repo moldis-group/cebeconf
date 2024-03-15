@@ -17,7 +17,7 @@ for folder in folders:
     path = './pyramidinone/' + folder
 #   os.chdir(path)
 
-    folder_name = path +'/'+folder+ '_direct.dat'
+    folder_name = path +'/'+folder+ '_delta.dat'
     with open(folder_name, 'r') as file:
         comment = file.readline()
         dft_data = file.readlines() 
@@ -30,7 +30,7 @@ for folder in folders:
             for r in range(loop):
                 molecule_name = path +'/'+ folder + '_' + str(p) + '_' + str(q) + '_'                     + str(r) + '.xyz'
 
-                out_acm = calc_be(molecule_name, 'direct', 'ACM')
+                out_acm = calc_be(molecule_name, 'delta', 'AtmEnv')
 
                 with open(molecule_name, 'r') as file:
                     no_of_atoms = file.readline()
