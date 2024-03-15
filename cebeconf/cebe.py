@@ -125,10 +125,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             model_F=np.array(df.iloc[:,0].values)
     
             #using median kij
-            sigma_C=3.598 # 0.24
-            sigma_N=3.927 # 0.45
-            sigma_O=4.700 # 0.66
-            sigma_F=4.681 # 0.900
+            sigma_C=3.116 # 0.150
+            sigma_N=3.192 # 0.300
+            sigma_O=3.500 # 0.480
+            sigma_F=3.637 # 0.840
 
     time2 = datetime.now()
     elapsed_time = time2-time1
