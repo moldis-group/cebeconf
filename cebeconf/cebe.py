@@ -1,8 +1,6 @@
 import os
 import numpy as np
 import pandas as pd
-import qml
-from qml.representations import generate_atomic_coulomb_matrix
 from setuptools import find_packages, setup
 from pkg_resources import resource_filename
 from datetime import datetime
@@ -69,10 +67,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             model_F=np.array(df.iloc[:,0].values)
     
             #using median kij
-            sigma_C=1231.742 # 0.75
-            sigma_N=2092.483 # 0.84
-            sigma_O=3669.079 # 0.90
-            sigma_F=10779.688 # 0.96
+            sigma_C=3390.345 # 0.84
+            sigma_N=8468.574 # 0.93
+            sigma_O=8742.836 # 0.93
+            sigma_F=15211.932 # 0.96
     
         if KRR_model.lower() == 'delta':
     
@@ -86,10 +84,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             model_F=np.array(df.iloc[:,0].values)
     
             #using median kij
-            sigma_C=485.092 # 0.48
-            sigma_N=646.678 # 0.57
-            sigma_O=831.413 # 0.63
-            sigma_F=1766.171 # 0.78
+            sigma_C=958.952 #0.540
+            sigma_N=1476.834 #0.66
+            sigma_O=2218.407 # 0.75
+            sigma_F=4476.221 # 0.87
 
     if rep.lower() == 'atmenv':
 
@@ -127,10 +125,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             model_F=np.array(df.iloc[:,0].values)
     
             #using median kij
-            sigma_C=3.598 # 0.24
-            sigma_N=3.927 # 0.45
-            sigma_O=4.700 # 0.66
-            sigma_F=4.681 # 0.900
+            sigma_C=3.116 # 0.150
+            sigma_N=3.192 # 0.300
+            sigma_O=3.500 # 0.480
+            sigma_F=3.637 # 0.840
 
     time2 = datetime.now()
     elapsed_time = time2-time1
@@ -140,10 +138,19 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     mol_R = np.array(mol_R)
 
     if rep.lower() == 'acm':
-        desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 6.0)
+        desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 100.0)
     if rep.lower() == 'atmenv':
-        #print(mol_Z,mol_R)
-        desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R,23,6.0)
+        desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R)
+
+#   for i_at in range(6):
+#       for j_at in range(6):
+#           dQi=desc_q[i_at]
+#           dQi=np.array([dQi])
+#           dQj=desc_q[j_at]
+#           dQj=np.array([dQj])
+#           dQij=np.sum(np.abs(dQi-dQj))
+#           print(i_at,j_at,dQij)
+
 
     BE = []
    # Predict with KRR

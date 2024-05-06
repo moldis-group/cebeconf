@@ -21,12 +21,12 @@
  # Details of training the ML models 🤖
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
 - So, for new predictions, the ML models require geometries quickly determined with UFF.
-- ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation (Ref-2).
-- Additional technical details are summarized in an upcoming article (Ref-3). 
+- ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation.
+- For technical details, see Ref-2, and its Suppoorting Information. 
 
 # Run `cebeconf` ✨
 
- - Install dependencies `numpy`, `qml`, `pandas`
+ - Install dependencies `numpy`, `pandas`
 
 - Download and install the package
 ```
@@ -98,8 +98,6 @@ Relax tightly using UFF.
 Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
 Digital Discovery, 1 (2022) 689-702.    
 
-[Ref-2] [_AS Christensen, FA Faber, B Huang, LA Bratholm, A Tkatchenko, KR Muller, OA von Lilienfeld (2017) "QML: A Python Toolkit for Quantum Machine Learning, https://github.com/qmlcode/qml"_](https://github.com/qmlcode/qml)  
-
-[Ref-3][_Accurate Core-Electron Binding Energies using Machine Learning Models Trained on the Small Organic Molecules Chemical Space_](arxiv link)    
+[Ref-2] [_Accurate Core-Electron Binding Energies at the Cost of a Single-Point Calculation using Transfer Learning Models Trained on Chemical Space_](arxiv link)    
 Susmita Tripathy, Shweta Jindal, Raghunathan Ramakrishnan      
 To be posted in Arxiv. 

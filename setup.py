@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-INSTALL_REQUIRES = [ 'qml', 'pandas', 'numpy' ]
+INSTALL_REQUIRES = [ 'pandas', 'numpy' ]
 
 setup(
         name='cebeconf',

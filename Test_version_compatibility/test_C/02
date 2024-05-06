@@ -1,0 +1,32 @@
+import numpy as np
+import json
+
+Atno=[]
+with open('Atno_C.txt','r') as file:
+    for line in file:
+        desc=line.strip()
+        if len(desc) > 0:
+            desc=json.loads(desc)
+            desc=np.array(desc,dtype=int)
+            Atno.append(desc)
+
+X=[]
+with open('output.txt', 'r') as file:
+    for line in file:
+        desc=line.strip()
+        if len(desc) > 0:
+            desc=json.loads(desc)
+            desc=np.array(desc,dtype=float)
+            X.append(desc)
+
+for iX in range(len(X)):
+    Y=X[iX]
+    for jX in range(len(Y)):
+#       print(Atno[iX][0])
+        if Atno[iX][0][jX] == 6:
+            Z=Y[jX]
+            for kX in range(len(Z)):
+                print(Z[kX],end=' ')
+                1+1
+            print()
+

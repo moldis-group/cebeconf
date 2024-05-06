@@ -1,0 +1,49 @@
+import torch
+import schnetpack as spk
+from ase.io import read
+from numpy import array
+import subprocess
+import warnings
+import os
+
+if os.path.isfile('data.db') == True:
+   os.remove('data.db')
+if os.path.isfile('data.pt') == True:
+   os.remove('data.pt')
+warnings.filterwarnings("ignore", message="The given NumPy array is not writable") #Numpy array [0.] is generated here, hence the warning
+warnings.filterwarnings("ignore", message="Use get_global_number_of_atoms()")  #Generated at for batch in test_loader
+#Convert input file into .db file
+out_name = "data.pt"
+atoms = read("HF.xyz", index=":")
+torch.save(atoms, out_name)
+
+outname = "data.db"
+data = torch.load("data.pt")
+
+property_ls =  [{"energy": array([ele.info["eng"]], dtype="float32")} for ele in data]
+
+dataset = spk.AtomsData(outname, available_properties=["energy"])
+
+dataset.add_systems(data, property_ls)
+
+
+#Load data from .db file
+
+dataset = spk.AtomsData('data.db', available_properties=["energy"])
+test_loader = spk.AtomsLoader(dataset, batch_size=1)
+model = torch.load("../../cebeconf/models/model_F", map_location=torch.device('cpu'))
+output_file = open("output.txt", "w")
+for count,batch in enumerate(test_loader):
+    pred=model(batch)
+    representation = batch["representation"]
+    idx_i = batch["_atomic_numbers"]
+    idx_m = batch["_idx"]
+    for i in range(len(representation)):
+        output_file.write(f"Representation: {representation[i].tolist()}\n")
+    output_file.write(f"Atomic Numbers: {idx_i}\n")
+    output_file.write("\n")  
+    
+
+
+subprocess.run(['rm', 'data.db'])
+subprocess.run(['rm', 'data.pt'])

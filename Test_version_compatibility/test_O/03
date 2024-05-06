@@ -1,0 +1,10 @@
+import numpy as np
+
+data_1 = np.loadtxt('desc_O.dat')
+data_2 = np.loadtxt('../output/desc_O_H2O.dat')
+
+diff = np.abs(data_1 - data_2)
+
+mae = np.mean(diff)
+
+print("Mean Absolute Error:", mae)
