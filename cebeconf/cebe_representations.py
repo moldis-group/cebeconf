@@ -4,7 +4,8 @@ def damp(x, Rcut):
     val = 1.0 - 1.0/( 1.0 + np.exp(-(x-Rcut)))
     return val
   
-def LocalCM(mol_Z, mol_R, Max_at, Rcut):
+#def LocalCM(mol_Z, mol_R, Max_at, Rcut):
+def LocalCM(mol_Z, mol_R, Max_at):
     '''
     Calculates Local Coulomb Matrix for each atom
     '''
