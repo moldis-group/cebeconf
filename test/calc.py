@@ -39,5 +39,5 @@ from cebeconf import calc_be
 #print(out)
 out=calc_be("benzene.xyz", 'direct', 'ACM')
 print(out)
-out=calc_be("benzene.xyz", 'delta', 'ACM')
-print(out)
+#out=calc_be("benzene.xyz", 'delta', 'ACM')
+#print(out)
