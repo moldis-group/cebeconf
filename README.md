@@ -16,7 +16,7 @@
 - Target property (1s core-electron binding energies) was calculated using the meta-GGA-DFT method strongly constrained and appropriately normed (`SCAN`) with a large, `Tight-full` numeric atom-centered orbital (NAO) basis set implemented in [FHI-aims](https://fhi-aims.org/).
 - These calculations were performed using ωB97XD/def2TZVP geometries presented in the bigQM7ω dataset.
 - For delta learning, the baseline energies were assigned based on Mulliken occupations. The data can be found in `Baseline_files`.
-- Two example files (UFF-PBE : ethane and propane) are also provided in home folder showing the output from Mulliken.out file from FHI-aims.
+- Two example files (UFF-PBE : [ethane](https://github.com/moldis-group/cebeconf/blob/main/example_Mulliken_ethane_UFF_pbe_cc-pVDZ.txt) and [propane](https://github.com/moldis-group/cebeconf/blob/main/example_Mulliken_propane_UFF_pbe_cc-pVDZ.txt)) are also provided in home folder showing the output from Mulliken.out file from FHI-aims.
 
  # Details of training the ML models 🤖
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
