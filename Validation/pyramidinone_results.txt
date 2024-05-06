@@ -1,0 +1,24 @@
+rr@expanse:~/repos_github/cebeconf/Validation$ python3.10 calc_direct_ACM_Pyramidinone.py
+#C = 1216   MAE =    0.5756 SD =   0.4786
+#N = 704   MAE =    0.4411 SD =   0.2986 BEST
+#O = 256   MAE =    0.2571 SD =   0.2065 BEST
+#F = 192   MAE =    0.3300 SD =   0.2261 BEST
+
+rr@expanse:~/repos_github/cebeconf/Validation$ python3.10 calc_direct_AtmEnv_Pyramidinone.py
+#C = 1216   MAE =    0.3330 SD =   0.2999 BEST
+#N = 704   MAE =    0.5744 SD =   0.4372
+#O = 256   MAE =    0.4481 SD =   0.3351
+#F = 192   MAE =    0.4517 SD =   0.3741
+
+rr@expanse:~/repos_github/cebeconf/Validation$ python3.10 calc_delta_ACM_Pyramidinone.py
+#C = 1216   MAE =    0.3605 SD =   0.2706
+#N = 704   MAE =    0.1918 SD =   0.1599
+#O = 256   MAE =    0.2504 SD =   0.1832
+#F = 192   MAE =    0.1895 SD =   0.1008
+
+rr@expanse:~/repos_github/cebeconf/Validation$ python3.10 calc_delta_AtmEnv_Pyramidinone.py
+#C = 1216   MAE =    0.2101 SD =   0.1934 BEST
+#N = 704   MAE =    0.1639 SD =   0.1343 BEST
+#O = 256   MAE =    0.1597 SD =   0.1176 BEST
+#F = 192   MAE =    0.1691 SD =   0.1239 BEST
+
