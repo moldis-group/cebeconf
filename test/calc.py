@@ -27,6 +27,7 @@ from cebeconf import calc_be
 #for CH4.xyz  delta_scf_ML_10.xyz  glucose_chain_UFF.xyz  glucose_ring_UFF.xyz  H2O.xyz  HF.xyz  NH3.qxyz  test.xyz
 #calc_be('test.xyz', 'direct', 'ACM')
 #calc_be('test.xyz', 'delta', 'ACM')
-for i in "CH4.xyz", "NH3.xyz", "H2O.xyz", "HF.xyz":
-    calc_be(i, 'direct', 'AtmEnv')
+#for i in "CH4.xyz", "NH3.xyz", "H2O.xyz", "HF.xyz":
+#    calc_be(i, 'direct', 'AtmEnv')
 #calc_be(i, 'delta', 'AtmEnv')
+calc_be('benzene.xyz', 'direct', 'AtmEnv')
