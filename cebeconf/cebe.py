@@ -14,7 +14,21 @@ data_folder = resource_filename('cebeconf', 'data')
 # Main
 def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
 
+    logo, header=cebeconf.headers()
+    print('\n\n\n Calculation started on '+formatted_datetime)
+    print(logo)
+    print(header)
+   
+    print(' +--------------+')
+    print(' | User inputs: |')
+    print(' +--------------+')
+    print(' Reading coordinates from:',XYZfile)
+    print(' Predicting 1s CEBEs using '+KRR_model+' ML with the '+rep+' descriptor \n')
+
     # Read XYZfile
+    print(' +--------------+')
+    print(' | Prediction:  |')
+    print(' +--------------+')
     mol_R=[]
     mol_Z=[]
 
@@ -138,7 +152,9 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     mol_R = np.array(mol_R)
 
     if rep.lower() == 'acm':
-        desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 100.0)
+        #desc_q = cebeconf.LocalCM(mol_Z, mol_R, 23, 100.0)
+        Max_at_bigqm7w=23
+        desc_q = cebeconf.LocalCM(mol_Z, mol_R, Max_at_bigqm7w)
     if rep.lower() == 'atmenv':
         desc_q = cebeconf.AtomicEnvt(mol_Z,mol_R)
 
@@ -220,7 +236,7 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
             time2 = datetime.now()
             elapsed_time = time2-time1
             formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
-           #print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
+            print(f" {i_at+1:4d} {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV")
       #      print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds {Kijmax:10.4f} {Kijmed:10.4f}")
            #print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f} {Epred:10.2f} eV, {formatted_elapsed_time} seconds")
 
@@ -230,9 +246,8 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     #        print(f" {at_types[i_at]} {mol_R[i_at][0]:15.8f} {mol_R[i_at][1]:15.8f} {mol_R[i_at][2]:15.8f}")
 
     # Calculate elapsed time
-#    end_time = datetime.now()
-#    elapsed_time = end_time - start_time
-#    formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
-#    print('')
-#    print(" Total elapsed Time (seconds):", formatted_elapsed_time)
+    end_time = datetime.now()
+    elapsed_time = end_time - start_time
+    formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
+    print('\n'+' Total elapsed Time (seconds):', formatted_elapsed_time)
     return  BE

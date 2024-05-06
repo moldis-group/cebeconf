@@ -72,9 +72,16 @@ def headers():
  This is an ML model for predicting 1s core binding
  energies of CONF atoms. The model is trained on data
  calculated using Delta-SCF approach with the mGGA-DFT
- method, SCAN, and a very large basis set.
+ method, SCAN, at the basis set limit. 
 
- Some reference values determined with this DFT method:
+ The model assumes that the input geometry is relaxed using
+ universal force fields (UFF).
+
+ If Delta-ML prediction is requested, the ML estimates
+ the difference in SCAN Delta-SCF values from Koopmans
+ estimation based on PBE/cc-pVDZ on UFF geometry.
+
+ Some reference values determined with the SCAN Delta-SCF  method:
 
  C in CH4, methane      290.94 eV
  C in CH3CH3, ethane    290.78 eV

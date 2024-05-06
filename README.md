@@ -98,6 +98,6 @@ Relax tightly using UFF.
 Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
 Digital Discovery, 1 (2022) 689-702.    
 
-[Ref-2][_Accurate Core-Electron Binding Energies using Machine Learning Models Trained on the Small Organic Molecules Chemical Space_](arxiv link)    
-Susmita Tripathy, Shweta Jindal, Raghunathan Ramakrishnan      
+[Ref-2] [_Accurate Core-Electron Binding Energies using Machine Learning Models Trained on the Small Organic Molecules Chemical Space_](arxiv link)    
+Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
 To be posted in Arxiv. 

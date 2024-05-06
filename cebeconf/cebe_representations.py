@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def damp(x, Rcut):
     val = 1.0 - 1.0/( 1.0 + np.exp(-(x-Rcut)))
     return val
@@ -32,21 +31,33 @@ def LocalCM(mol_Z, mol_R, Max_at, Rcut):
     desc=[]
     for k in range(N_at):
 
+       #CMmat=np.zeros( [Max_at,Max_at] )
+       #for i1,i in enumerate(indices[k]):
+       #    rik = np.linalg.norm(mol_R[i] - mol_R[k])
+       #    fik=damp(rik,Rcut)
+       #    for j1,j in enumerate(indices[i]):
+       #        rij = np.linalg.norm(mol_R[i] - mol_R[j])
+       #        fij=damp(rij,Rcut)
+       #        rjk = np.linalg.norm(mol_R[j] - mol_R[k])
+       #        fjk=damp(rjk,Rcut)
+       #        if i == j:
+       #            val=0.5*mol_Z[i]**2.4
+       #            CMmat[i1][i1]=val * fik**2
+       #        else:
+       #            val=mol_Z[i]*mol_Z[j]/rij
+       #            CMmat[i1][j1]=val * fij * fjk * fik
+
         CMmat=np.zeros( [Max_at,Max_at] )
         for i1,i in enumerate(indices[k]):
             rik = np.linalg.norm(mol_R[i] - mol_R[k])
-            fik=damp(rik,Rcut)
             for j1,j in enumerate(indices[i]):
                 rij = np.linalg.norm(mol_R[i] - mol_R[j])
-                fij=damp(rij,Rcut)
-                rjk = np.linalg.norm(mol_R[j] - mol_R[k])
-                fjk=damp(rjk,Rcut)
                 if i == j:
                     val=0.5*mol_Z[i]**2.4
-                    CMmat[i1][i1]=val * fik**2
+                    CMmat[i1][i1]=val
                 else:
                     val=mol_Z[i]*mol_Z[j]/rij
-                    CMmat[i1][j1]=val * fij * fjk * fik
+                    CMmat[i1][j1]=val
 
         CM=[]
         for i in range(Max_at):
