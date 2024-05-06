@@ -83,7 +83,7 @@ Write down the [SMILES descriptor](https://en.wikipedia.org/wiki/Simplified_mole
 
     echo 'c1ccccc1' > benzene.smi
 
-Generate an initial geometry using [openbabel](http://openbabel.org/wiki/Main_Page). :information_desk_person: If you have obtained an initial geometry by other means, then you can skip the previous step.
+Generate an initial geometry using [openbabel](http://openbabel.org/wiki/Main_Page). If you have obtained an initial geometry by other means, then you can skip the previous step.
 
     obabel -oxyz benzene.smi > benzene.xyz --gen3d
 
