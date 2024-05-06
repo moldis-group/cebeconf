@@ -1,2 +1,0 @@
-Atom     x        y         z         IE(DFT)      IE(ML)
-uracil_000_000

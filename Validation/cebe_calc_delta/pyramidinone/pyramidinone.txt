@@ -1,2 +1,0 @@
-Atom     x        y         z         IE(DFT)      IE(ML)
-1H_2pyramidinone_0_0_0
