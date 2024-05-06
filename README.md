@@ -18,13 +18,13 @@
 - For delta learning, the baseline energies were assigned based on Mulliken occupations. The data can be found in `Baseline_files`.
 - Two example files (UFF-PBE : [ethane](https://github.com/moldis-group/cebeconf/blob/main/example_Mulliken_ethane_UFF_pbe_cc-pVDZ.txt) and [propane](https://github.com/moldis-group/cebeconf/blob/main/example_Mulliken_propane_UFF_pbe_cc-pVDZ.txt)) are also provided in home folder showing the output from Mulliken.out file from FHI-aims.
 
- # Details of training the ML models 🤖
+ # Details of training the ML models 
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
 - So, for new predictions, the ML models require geometries quickly determined with UFF.
 - ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation.
 - For technical details, see Ref-2, and its Suppoorting Information. 
 
-# Run `cebeconf` ✨
+# Run `cebeconf` 
 
  - Install dependencies `numpy`, `pandas`
 
@@ -77,7 +77,7 @@ H     5.35240   2.60380   1.06330
 ...
 ```
 
-# How to calculate UFF-level geometry? 🤔
+# How to calculate UFF-level geometry? 
 
 Write down the [SMILES descriptor](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) of the molecule (example `c1ccccc1` for benzene) in a file. 
 
