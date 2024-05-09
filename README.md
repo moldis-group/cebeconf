@@ -99,5 +99,5 @@ Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan
 Digital Discovery, 1 (2022) 689-702.    
 
 [Ref-2] [_Accurate Core-Electron Binding Energies at the Cost of a Single-Point Calculation using Transfer Learning Models Trained on Chemical Space_](arxiv link)    
-Susmita Tripathy, Shweta Jindal, Raghunathan Ramakrishnan      
+Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
 To be posted in Arxiv. 
