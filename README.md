@@ -33,6 +33,11 @@
     git clone git@github.com:moldis-group/cebeconf.git
     pip3 install -e cebeconf
 ```
+- Install from PyPI
+```
+   pip3 install cebeconf
+```
+
  - Create an XYZ file at the UFF level (see below to learn about how to do this)
 
  - Run the ML model in `python3` (example in `cebeconf/test` folder)
