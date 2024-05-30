@@ -16,15 +16,15 @@
 - Target property (1s core-electron binding energies) was calculated using the meta-GGA-DFT method strongly constrained and appropriately normed (`SCAN`) with a large, `Tight-full` numeric atom-centered orbital (NAO) basis set implemented in [FHI-aims](https://fhi-aims.org/).
 - These calculations were performed using ωB97XD/def2TZVP geometries presented in the bigQM7ω dataset.
 - For delta learning, the baseline energies were assigned based on Mulliken occupations. The data can be found in `Baseline_files`.
-- Two example files (UFF-PBE : ethane and propane) are also provided in home folder showing the output from Mulliken.out file from FHI-aims.
+- Two example files (UFF-PBE : [ethane](https://github.com/moldis-group/cebeconf/blob/main/example_Mulliken_ethane_UFF_pbe_cc-pVDZ.txt) and [propane](https://github.com/moldis-group/cebeconf/blob/main/example_Mulliken_propane_UFF_pbe_cc-pVDZ.txt)) are also provided in home folder showing the output from Mulliken.out file from FHI-aims.
 
- # Details of training the ML models 🤖
+ # Details of training the ML models 
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
 - So, for new predictions, the ML models require geometries quickly determined with UFF.
 - ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation.
 - For technical details, see Ref-2, and its Suppoorting Information. 
 
-# Run `cebeconf` ✨
+# Run `cebeconf` 
 
  - Install dependencies `numpy`, `pandas`
 
@@ -82,13 +82,13 @@ H     5.35240   2.60380   1.06330
 ...
 ```
 
-# How to calculate UFF-level geometry? 🤔
+# How to calculate UFF-level geometry? 
 
 Write down the [SMILES descriptor](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system) of the molecule (example `c1ccccc1` for benzene) in a file. 
 
     echo 'c1ccccc1' > benzene.smi
 
-Generate an initial geometry using [openbabel](http://openbabel.org/wiki/Main_Page). :information_desk_person: If you have obtained an initial geometry by other means, then you can skip the previous step.
+Generate an initial geometry using [openbabel](http://openbabel.org/wiki/Main_Page). If you have obtained an initial geometry by other means, then you can skip the previous step.
 
     obabel -oxyz benzene.smi > benzene.xyz --gen3d
 
@@ -103,11 +103,7 @@ Relax tightly using UFF.
 Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
 Digital Discovery, 1 (2022) 689-702.    
 
-<<<<<<< HEAD
-[Ref-2] [_Accurate Core-Electron Binding Energies using Machine Learning Models Trained on the Small Organic Molecules Chemical Space_](arxiv link)    
+[Ref-2] [_Chemical Space-Informed Machine Learning Models for
+Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](arxiv link)    
 Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
-=======
-[Ref-2] [_Accurate Core-Electron Binding Energies at the Cost of a Single-Point Calculation using Transfer Learning Models Trained on Chemical Space_](arxiv link)    
-Susmita Tripathy, Shweta Jindal, Raghunathan Ramakrishnan      
->>>>>>> 1cb429350191a4980b12e48dcf9f922320677370
 To be posted in Arxiv. 
