@@ -104,6 +104,6 @@ Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan
 Digital Discovery, 1 (2022) 689-702.    
 
 [Ref-2] [_Chemical Space-Informed Machine Learning Models for
-Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](arxiv link)    
+Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](https://arxiv.org/abs/2405.20033)    
 Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
-To be posted in Arxiv. 
+[https://arxiv.org/abs/2405.20033](https://arxiv.org/abs/2405.20033). 
