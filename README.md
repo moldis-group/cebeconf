@@ -9,10 +9,10 @@
   \___|\___||_.__/  \___| \___|\___/ |_| |_||_|
 ```
 
-`cebeconf` package is a set of machine-learning models for predicting 1s-`c`ore `e`lectron `b`inding `e`nergies of `CONF` atoms in organic molecules. 
+`cebeconf` package is a set of machine-learning models for predicting 1s-`c`ore `e`lectron `b`inding `e`nergies of `CONF` atoms in organic molecules (Ref-1). 
 
 # Details of target-level 1s core-electron binding energies
-- Models were trained on 12880 small organic molecules from the [bigQM7ω dataset](https://moldis-group.github.io/bigQM7w/) (Ref-1).
+- Models were trained on 12880 small organic molecules from the [bigQM7ω dataset](https://moldis-group.github.io/bigQM7w/) (Ref-2).
 - Target property (1s core-electron binding energies) was calculated using the meta-GGA-DFT method strongly constrained and appropriately normed (`SCAN`) with a large, `Tight-full` numeric atom-centered orbital (NAO) basis set implemented in [FHI-aims](https://fhi-aims.org/).
 - These calculations were performed using ωB97XD/def2TZVP geometries presented in the bigQM7ω dataset.
 - For delta learning, the baseline energies were assigned based on Mulliken occupations. The data can be found in `Baseline_files`.
@@ -22,7 +22,7 @@
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
 - So, for new predictions, the ML models require geometries quickly determined with UFF.
 - ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation.
-- For technical details, see Ref-2, and its Suppoorting Information. 
+- For technical details, see Ref-1, and its Suppoorting Information. 
 
 # Run `cebeconf` 
 
@@ -99,11 +99,13 @@ Relax tightly using UFF.
 :warning: We have used Open Babel 2.4.1 in our workflow.
 
 # References
-[Ref-1] [_The Resolution-vs.-Accuracy Dilemma in Machine Learning Modeling of Electronic Excitation Spectra_](https://doi.org/10.1039/D1DD00031D)                  
-Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
-Digital Discovery, 1 (2022) 689-702.    
-
-[Ref-2] [_Chemical Space-Informed Machine Learning Models for
+[Ref-1] [_Chemical Space-Informed Machine Learning Models for
 Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](https://arxiv.org/abs/2405.20033)    
 Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
 [https://arxiv.org/abs/2405.20033](https://arxiv.org/abs/2405.20033). 
+
+[Ref-2] [_The Resolution-vs.-Accuracy Dilemma in Machine Learning Modeling of Electronic Excitation Spectra_](https://doi.org/10.1039/D1DD00031D)                  
+Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
+Digital Discovery, 1 (2022) 689-702.    
+
+
