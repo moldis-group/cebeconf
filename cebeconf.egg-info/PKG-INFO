@@ -1,4 +1,10 @@
-Metadata-Version: 2.1
+Metadata-Version: 1.0
 Name: cebeconf
-Version: 0.1
-License-File: LICENSE
+Version: 1.0.1
+Summary: cebeconf: A package of machine-learning models for predicting 1s-core electron binding energies of CONF atoms in organic molecules.
+Home-page: https://github.com/moldis-group/cebeconf
+Author: Raghunathan Ramakrishnan
+Author-email: raghu.rama.chem@gmail.com
+License: MIT License
+Description: UNKNOWN
+Platform: UNKNOWN
