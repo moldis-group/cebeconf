@@ -45,7 +45,7 @@
  ```
 from cebeconf import calc_be
   
-calc_be('test.xyz')
+calc_be('test.xyz','direct', 'ACM')
  ```
 
  - Suppose `test.xyz' contains the following geometry (which is the last molecule in bigQM7ω dataset)
@@ -75,10 +75,18 @@ H     5.35240   2.60380   1.06330
 - Running the code generates the following output
 ```
 ...
- C      1.03070000     -0.07680000      0.06770000     290.62 eV, 0.24 seconds
- C      2.53800000     -0.21440000     -0.12550000     291.22 eV, 0.26 seconds
- C      2.99750000     -0.46340000     -1.49170000     291.04 eV, 0.26 seconds
- N      3.09380000      0.90540000     -0.90860000     404.81 eV, 0.11 seconds
+ +--------------+
+ | User inputs: |
+ +--------------+
+ Reading coordinates from: test.xyz
+ Predicting 1s CEBEs using direct ML with the ACM descriptor 
+
+ +--------------+
+ | Prediction:  |
+ +--------------+
+    1 C      1.03070000     -0.07680000      0.06770000     290.81 eV
+    2 C      2.53800000     -0.21440000     -0.12550000     291.83 eV
+    3 C      2.99750000     -0.46340000     -1.49170000     291.90 eV
 ...
 ```
 
