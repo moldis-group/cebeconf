@@ -5,6 +5,7 @@ from setuptools import find_packages, setup
 from pkg_resources import resource_filename
 from datetime import datetime
 import cebeconf
+from .XPS_spectra import *
 
 start_time = datetime.now()
 formatted_datetime = start_time.strftime("%Y-%m-%d %H:%M:%S")
@@ -12,8 +13,8 @@ formatted_datetime = start_time.strftime("%Y-%m-%d %H:%M:%S")
 data_folder = resource_filename('cebeconf', 'data')
 
 # Main
-def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
-
+def calc_be(XYZfile,KRR_model,rep,BE_KT=0,**args_MaxN):
+    
     logo, header=cebeconf.headers()
     print('\n\n\n Calculation started on '+formatted_datetime)
     print(logo)
@@ -23,8 +24,10 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     print(' | User inputs: |')
     print(' +--------------+')
     print(' Reading coordinates from:',XYZfile)
+    if KRR_model.lower() == 'delta':
+        if BE_KT != 0 :
+            print(' Baseline energies at PBE-cc-pVDZ level of theory :', BE_KT)
     print(' Predicting 1s CEBEs using '+KRR_model+' ML with the '+rep+' descriptor \n')
-
     # Read XYZfile
     print(' +--------------+')
     print(' | Prediction:  |')
@@ -250,4 +253,6 @@ def calc_be(XYZfile,KRR_model,rep,**args_MaxN):
     elapsed_time = end_time - start_time
     formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
     print('\n'+' Total elapsed Time (seconds):', formatted_elapsed_time)
-    return  BE
+    get_spectra(KRR_model,BE,BE_KT)
+    return BE
+
