@@ -64,7 +64,8 @@ def calc_be(XYZfile,KRR_model,rep,BE_KT=0,**args_MaxN):
 
     # Load data
     time1 = datetime.now()
-
+    KT_i = 0
+    
     if rep.lower() == 'acm':
 
         X_train_C=np.load(os.path.join(data_folder, 'C_representation_ACM.npy'))
