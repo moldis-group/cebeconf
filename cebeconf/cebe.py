@@ -236,6 +236,11 @@ def calc_be(XYZfile,KRR_model,rep,BE_KT=0,**args_MaxN):
             Kijmax=np.max(Kpred)
             Kijmed=np.median(Kpred)
 
+            if BE_KT != 0:
+                baseline = BE_KT[KT_i]
+                KT_i += 1
+            else : baseline = 0
+
             time2 = datetime.now()
             elapsed_time = time2-time1
             formatted_elapsed_time = "{:.2f}".format(elapsed_time.total_seconds())
