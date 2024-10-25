@@ -110,10 +110,10 @@ Relax tightly using UFF.
 [Ref-1] [_Chemical Space-Informed Machine Learning Models for
 Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](https://doi.org/10.1088/2632-2153/ad871d)    
 Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
-[Mach. Learn.: Sci. Technol. 5 (2024) 045023](https://doi.org/10.1088/2632-2153/ad871d).
+Mach. Learn.: Sci. Technol. 5 (2024) 045023.
 
 [Ref-2] [_The Resolution-vs.-Accuracy Dilemma in Machine Learning Modeling of Electronic Excitation Spectra_](https://doi.org/10.1039/D1DD00031D)                  
 Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
-Digital Discovery, 1 (2022) 689-702.    
+Digital Discov., 1 (2022) 689-702.    
 
 
