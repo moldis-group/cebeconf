@@ -108,9 +108,9 @@ Relax tightly using UFF.
 
 # References
 [Ref-1] [_Chemical Space-Informed Machine Learning Models for
-Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](https://arxiv.org/abs/2405.20033)    
+Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](https://doi.org/10.1088/2632-2153/ad871d)    
 Susmita Tripathy, Surajit Das, Shweta Jindal, Raghunathan Ramakrishnan      
-[https://arxiv.org/abs/2405.20033](https://arxiv.org/abs/2405.20033). 
+[Mach. Learn.: Sci. Technol. 5 (2024) 045023](https://doi.org/10.1088/2632-2153/ad871d).
 
 [Ref-2] [_The Resolution-vs.-Accuracy Dilemma in Machine Learning Modeling of Electronic Excitation Spectra_](https://doi.org/10.1039/D1DD00031D)                  
 Prakriti Kayastha, Sabyasachi Chakraborty, Raghunathan Ramakrishnan    
