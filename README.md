@@ -22,7 +22,7 @@
 - To facilitate rapid application of the ML models, training was done using _baseline_ geometries of the bigQM7ω molecules determined with the universal force field (UFF). These geometries are also provided at [https://moldis-group.github.io/bigQM7w/](https://moldis-group.github.io/bigQM7w/)
 - So, for new predictions, the ML models require geometries quickly determined with UFF.
 - ML models were trained using the kernel-ridge-regression model using the atomic Coulomb matrix representation.
-- For technical details, see Ref-1, and its Suppoorting Information. 
+- For technical details, see Ref-1, and its Supporting Information. 
 
 # Run `cebeconf` 
 
