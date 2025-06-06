@@ -106,6 +106,14 @@ Relax tightly using UFF.
 
 :warning: We have used Open Babel 2.4.1 in our workflow.
 
+:warning: We have tested the code to work with the following versions of Python and other modules. 
+```
+Python version: 3.8.20 
+Numpy version: 1.21.6
+PyTorch version: 2.4.1
+SchNetPack version: 0.3
+```
+
 # References
 [Ref-1] [_Chemical Space-Informed Machine Learning Models for
 Rapid Predictions of X-ray Photoelectron Spectra of Organic Molecules_](https://doi.org/10.1088/2632-2153/ad871d)    
